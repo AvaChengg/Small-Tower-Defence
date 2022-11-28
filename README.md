@@ -10,8 +10,8 @@ Controls Action Keyboard Control Movement AWSD Pause Esc
 
 Team:
 
-Ava Cheng - Programmer | UI/UX
-Jaylon Han - Character Art | Prop Art | Environment Art
-Seed (Steven) Liu - Character Art | Animation advisor
-Erin Beardy - Level Design | UI/UX | Audio
-Sarah Janssen - Concept Art
+<li>Ava Cheng - Programmer | UI/UX
+<li>Jaylon Han - Character Art | Prop Art | Environment Art
+<li>Seed (Steven) Liu - Character Art | Animation advisor
+<li>Erin Beardy - Level Design | UI/UX | Audio
+<li>Sarah Janssen - Concept Art
