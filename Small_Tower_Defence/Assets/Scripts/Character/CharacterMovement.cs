@@ -21,6 +21,7 @@ public class CharacterMovement : MonoBehaviour
         _rigidbody= GetComponent<Rigidbody>();
         _rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
     
+        // configure NavMeshAgent (turn off movement/ rotation - we'll handle that ourselves)
         _navMeshAgent= GetComponent<NavMeshAgent>();
         _navMeshAgent.updatePosition = false;
         _navMeshAgent.updateRotation= false;
