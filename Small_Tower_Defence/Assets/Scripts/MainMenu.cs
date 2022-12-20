@@ -6,46 +6,34 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    //public bool isStart;
-    //public bool isQuit;
-    //
-    //void OnMouseUp()
-    //{
-    //    if(isStart)
-    //    {
-    //        Application.LoadLevel(1);
-    //    }
-    //    if (isQuit)
-    //    {
-    //        Application.Quit();
-    //    }
-    //}
-
     public string Level;
+    
+    public GameObject creditsScreen;
+    public GameObject settingsScreen;
 
     public void StartGame()
     {
         SceneManager.LoadScene(Level);
     }
-
+      
     public void OpenSettings()
     {
-
+        settingsScreen.SetActive(true);
     }
 
-    public void CloseOptions()
+    public void CloseSettings()
     {
-
+        settingsScreen.SetActive(false);
     }
 
     public void OpenCredits()
     {
-
+        creditsScreen.SetActive(true);        
     }
 
     public void CloseCredits()
     {
-
+        creditsScreen.SetActive(false);
     }
 
     public void QuitGame()
