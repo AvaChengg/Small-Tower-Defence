@@ -37,7 +37,7 @@ public class CharacterMovement : MonoBehaviour
         else _navMeshAgent.SetDestination(destination);
     }
 
-    private void Stop()
+    public void Stop()
     {
         _navMeshAgent.ResetPath();
         SetMoveInput(Vector3.zero);
