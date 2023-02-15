@@ -1,16 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : LevelController
 {
+    [Header("Attacking")]
     [SerializeField] private float _attackDistance = 5.0f;
 
-    [SerializeField] private GameObject _target;
-    private CharacterMovement _charcterMovement;
+    [Header("Patrolling")]
+    [SerializeField] private float _patrolPointReachedDistance = 1.0f;
+    [SerializeField] private float _patrolSpeed = 0.5f;
 
     private IEnumerator _currentState;
+    private CharacterMovement _charcterMovement;
     private string _currentStateName;
+    private GameObject _target;
+
+    // Events
+    public UnityEvent OnKilled;
 
     private void Awake()
     {
@@ -49,6 +57,20 @@ public class EnemyController : MonoBehaviour
     //        yield return null;
     //    }
     //}
+
+    // patrol the points by the order
+    private IEnumerator PatrolState()
+    {
+        // find new patrol point if existing reached
+        float patrolDistance = Vector3.Distance(transform.position, _patrolPoints[_pathIndex].position);
+        if (patrolDistance < _patrolPointReachedDistance) _pathIndex++;
+
+        // move to patrol point
+        _charcterMovement.MoveTo(_patrolPoints[_pathIndex].position);
+
+        // wait for next frame
+        yield return null;
+    }
 
     // chase after target, enter attack when in range
     //private IEnumerator ChaseState()
