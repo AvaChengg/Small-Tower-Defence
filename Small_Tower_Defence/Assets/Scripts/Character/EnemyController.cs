@@ -15,7 +15,7 @@ public class EnemyController : MonoBehaviour
 
     // get patrol points data from Encounter.cs and then store the date to _patrolPoints
     public PatrolPoint[] PatrolPoints { get { return _patrolPoints; } set { _patrolPoints = value; } }
-    private int _pathIndex = 0;
+    [SerializeField] private int _pathIndex = 0;
 
     private IEnumerator _currentState;
     private CharacterMovement _charcterMovement;
@@ -66,23 +66,26 @@ public class EnemyController : MonoBehaviour
         // slow move speed during patrol
         _charcterMovement.SpeedMultiplier = _patrolSpeed;
 
-        // find new patrol point if existing reached
-        float patrolDistance = Vector3.Distance(transform.position, _patrolPoints[_pathIndex].transform.position);
-        if (patrolDistance < _patrolPointReachedDistance) _pathIndex++;
-
-        // move to patrol point
-        _charcterMovement.MoveTo(_patrolPoints[_pathIndex].transform.position);
-
-        // wait for next frame
-        yield return null;
-    }
-
-    private void Update()
-    {
-        if(_target != null)
+        while(true)
         {
-            Debug.DrawLine(transform.position, _target.transform.position, Color.red);
-            _charcterMovement.MoveTo(_target.transform.position);
+            // find new patrol point if existing reached
+            float patrolDistance = Vector3.Distance(transform.position, _patrolPoints[_pathIndex].transform.position);
+            if (patrolDistance < _patrolPointReachedDistance) _pathIndex++;
+
+            // move to patrol point
+            _charcterMovement.MoveTo(_patrolPoints[_pathIndex].transform.position);
+
+            // check if moster die or reach the final point
+            //if (_pathIndex + 1 == _patrolPoints.Length) _charcterMovement.Stop();
+
+            // wait for next frame
+            yield return null;
         }
+
     }
+
+    //private void Update()
+    //{
+
+    //}
 }
