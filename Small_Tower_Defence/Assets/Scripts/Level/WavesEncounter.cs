@@ -19,7 +19,7 @@ public class WavesEncounter : Encounter
 
     private IEnumerator SpawnWaves()
     {
-        for(int i = 0; i <= quantity; i++)
+        for(int i = 0; i <= quantity - 1; i++)
         {
             SpawnEnemy(_monsters);
 

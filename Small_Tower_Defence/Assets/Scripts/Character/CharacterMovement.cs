@@ -6,9 +6,11 @@ using UnityEngine.AI;
 
 public class CharacterMovement : MonoBehaviour
 {
-    private float _moveSpeed = 5.0f;
-    private float _acceleration = 10.0f;
-    private float _turnSpeed = 10.0f;
+    [Header("Movement")]
+    [SerializeField]private float _moveSpeed = 5.0f;
+    [SerializeField]private float _acceleration = 10.0f;
+    [SerializeField]private float _turnSpeed = 10.0f;
+    [field: SerializeField] public float SpeedMultiplier { get; set; } = 1.0f;
 
     private Vector3 _moveInput;
     private Vector3 _lookDirection;
@@ -58,16 +60,18 @@ public class CharacterMovement : MonoBehaviour
     {
         if(_navMeshAgent.hasPath) 
         {
+            // get NEXT point on path
             Vector3 next = _navMeshAgent.path.corners[1];
             Vector3 direction = (next - transform.position).normalized;
 
+            // set move/look directions towards point
             SetMoveInput(direction);
             SetLookDiretion(direction);
         }
 
         // calculate velocity differential
         Vector3 currentVelocity = _rigidbody.velocity;
-        Vector3 targetVelocity = _moveInput * _moveSpeed;
+        Vector3 targetVelocity = _moveInput * _moveSpeed * SpeedMultiplier;
         Vector3 velocityDifferentail = targetVelocity - currentVelocity;
         velocityDifferentail.y = 0f;
 

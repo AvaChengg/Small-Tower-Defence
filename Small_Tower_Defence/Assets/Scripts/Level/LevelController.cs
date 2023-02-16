@@ -5,11 +5,8 @@ using UnityEngine;
 public class LevelController : MonoBehaviour
 {
     // level
-    protected int _levelCounter = 0;        // count levels
-    protected int _lives = 30;              // player lives
+    [Header("Level Setting")]
+    protected int _levelCounter = 0;                // count levels
     protected bool _isGameOver = false;
-
-    // Spawner
-    protected int _pathIndex = 0;
-    protected List<Transform> _patrolPoints;
+    [SerializeField] protected int _lives = 30;     // player lives
 }

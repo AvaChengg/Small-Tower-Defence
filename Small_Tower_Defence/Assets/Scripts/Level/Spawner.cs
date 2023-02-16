@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Spawner : LevelController
 {
+    // Spawner
+    public List<Transform> PatrolPoints;
+
     private void Start()
     {
         GetPatrolPoints();
@@ -13,7 +16,7 @@ public class Spawner : LevelController
         for (int i = 0; i < transform.childCount; i++)
         {
             Transform patrolPoint = transform.GetChild(i);
-            _patrolPoints.Add(patrolPoint);
+            PatrolPoints.Add(patrolPoint);
         }
     }
 }
