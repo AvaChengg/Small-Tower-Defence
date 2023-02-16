@@ -10,15 +10,12 @@ public class Encounter : LevelController
     private List<EnemyController> _currentEnemies = new List<EnemyController>();    // store enemies that spawned
     public int CurrentEnemyCounter => _currentEnemies.Count;
 
-    private Spawner _spawner;
+    [SerializeField] private Transform _patrolPoint;
+    private PatrolPoint[] _patrolPointsList;
 
     public UnityEvent OnEncounterStarted;
     public UnityEvent OnEncounterFinished;
     public UnityEvent OnUpdateObjected;
-    private void Awake()
-    {
-        _spawner= GetComponent<Spawner>();
-    }
 
     // encounter starts here
     public virtual void StartEncounter()
@@ -32,7 +29,10 @@ public class Encounter : LevelController
         if (_isGameOver == true) return;
 
         EnemyController spawned = Instantiate(prefabs[_levelCounter], transform.position, transform.rotation) as EnemyController;
-        //spawned.PatrolPointsAI = _spawner.PatrolPoints;
+
+        // get the patrol point to the enemy controller
+        _patrolPointsList = _patrolPoint.GetComponentsInChildren<PatrolPoint>();
+        spawned.PatrolPoints = _patrolPointsList;
 
         // add to list for tracking and listen for death
         _currentEnemies.Add(spawned);

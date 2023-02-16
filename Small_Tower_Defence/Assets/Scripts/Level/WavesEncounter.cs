@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class WavesEncounter : Encounter
 {
-    [Header("Spawner")]
+    [Header("PatrolPoint Setting")]
     public EnemyController[] _monsters;     // spawn the monsters prefab
     public float _spawnInterval = 0.5f;     // spawn monster interval
     public int quantity = 10;               // spawn monster quantity

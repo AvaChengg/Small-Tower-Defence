@@ -9,11 +9,12 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float _attackDistance = 5.0f;
 
     [Header("Patrolling")]
-    [SerializeField] private Transform[] _patrolPoints;
     [SerializeField] private float _patrolPointReachedDistance = 1.0f;
     [SerializeField] private float _patrolSpeed = 0.5f;
-    //[SerializeField]protected List<Transform> _patrolPointsAI;
-   // public List<Transform> PatrolPointsAI { get { return _patrolPointsAI; } set { _patrolPointsAI = value; } }
+    [SerializeField] private PatrolPoint[] _patrolPoints;
+
+    // get patrol points data from Encounter.cs and then store the date to _patrolPoints
+    public PatrolPoint[] PatrolPoints { get { return _patrolPoints; } set { _patrolPoints = value; } }
     private int _pathIndex = 0;
 
     private IEnumerator _currentState;
@@ -28,7 +29,7 @@ public class EnemyController : MonoBehaviour
     {
         //_target = GameObject.Find("Building");
         _charcterMovement = GetComponent<CharacterMovement>();
-        //_spawner = GetComponent<Spawner>(); 
+        //_spawner = GetComponent<PatrolPoint>(); 
     }
 
     private void Start()
@@ -48,7 +49,7 @@ public class EnemyController : MonoBehaviour
         // assign new current state and start it
         _currentState = newState;
         _currentStateName = newState.ToString();
-        Debug.Log("ChangeState");
+
         StartCoroutine(_currentState);
     }
 
@@ -59,20 +60,6 @@ public class EnemyController : MonoBehaviour
         _charcterMovement.Stop();
     }
 
-    // sit waiting for a target to appear
-    //private IEnumerator IdleState()
-    //{
-    //    // loop infinitely until a target is found
-    //    while(true)
-    //    {
-    //        TryFindTarget();
-    //        if (IsTargetValid) ChangeState(ChaseState());
-
-    //        // pause loop and wait for next frame to execute
-    //        yield return null;
-    //    }
-    //}
-
     // patrol the points by the order
     private IEnumerator PatrolState()
     {
@@ -80,23 +67,15 @@ public class EnemyController : MonoBehaviour
         _charcterMovement.SpeedMultiplier = _patrolSpeed;
 
         // find new patrol point if existing reached
-        float patrolDistance = Vector3.Distance(transform.position, _patrolPoints[_pathIndex].position);
+        float patrolDistance = Vector3.Distance(transform.position, _patrolPoints[_pathIndex].transform.position);
         if (patrolDistance < _patrolPointReachedDistance) _pathIndex++;
 
-        Debug.Log("PatrolState");
-
         // move to patrol point
-        _charcterMovement.MoveTo(_patrolPoints[_pathIndex].position);
+        _charcterMovement.MoveTo(_patrolPoints[_pathIndex].transform.position);
 
         // wait for next frame
         yield return null;
     }
-
-    // chase after target, enter attack when in range
-    //private IEnumerator ChaseState()
-    //{
-        
-    //}
 
     private void Update()
     {
