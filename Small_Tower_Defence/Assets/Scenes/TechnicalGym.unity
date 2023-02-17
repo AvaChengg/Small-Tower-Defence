@@ -1465,7 +1465,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed54e57873df98f428565441cd1cd178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackDistance: 5
   _patrolPointReachedDistance: 1
   _patrolSpeed: 0.5
   _patrolPoints: []
