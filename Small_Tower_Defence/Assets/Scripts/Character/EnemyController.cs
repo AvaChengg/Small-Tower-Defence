@@ -1,13 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class EnemyController : MonoBehaviour
 {
-    [Header("Attacking")]
-    [SerializeField] private float _attackDistance = 5.0f;
-
     [Header("Patrolling")]
     [SerializeField] private float _patrolPointReachedDistance = 1.0f;
     [SerializeField] private float _patrolSpeed = 0.5f;
@@ -20,7 +16,6 @@ public class EnemyController : MonoBehaviour
     private IEnumerator _currentState;
     private CharacterMovement _charcterMovement;
     private string _currentStateName;
-    private GameObject _target;
 
     // Events
     public UnityEvent OnKilled;
@@ -29,7 +24,6 @@ public class EnemyController : MonoBehaviour
     {
         //_target = GameObject.Find("Building");
         _charcterMovement = GetComponent<CharacterMovement>();
-        //_spawner = GetComponent<PatrolPoint>(); 
     }
 
     private void Start()
@@ -83,9 +77,4 @@ public class EnemyController : MonoBehaviour
         }
 
     }
-
-    //private void Update()
-    //{
-
-    //}
 }
