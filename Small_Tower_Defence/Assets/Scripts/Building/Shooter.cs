@@ -27,6 +27,21 @@ public class Shooter : WeaponController
             // if inside this check, something was hit
 
             // try and get target, check team (for enemy), then try to damage health
+            if (hit.collider.TryGetComponent(out Targetable target) &&
+                target.Team != myTeam &&
+                hit.collider.TryGetComponent(out Health targetHealth))
+            {
+                // if above check was successful, we hit an enemy
+
+                // create damage info
+                DamageInfo info = new DamageInfo();
+                info.Amount = _damage;
+                info.Instigator = instigator;
+
+                // damage enemy target
+                targetHealth.Damage(info);
+                Debug.DrawLine(start, hit.point, Color.red, 0.25f);
+            }
         }
     }
 }

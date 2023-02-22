@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class BuildingController : MonoBehaviour
 
     private Targetable _myTargetable;
     private Targetable _target;
+    private Shooter _shooter;
 
     // useful properties for AI decision making
     public bool IsTargetValid => _target != null && _target.IsTargetable;
@@ -21,7 +23,8 @@ public class BuildingController : MonoBehaviour
 
     private void Awake()
     {
-        _myTargetable= GetComponent<Targetable>();
+        _myTargetable = GetComponent<Targetable>();
+        _shooter = GetComponentInChildren<Shooter>();
     }
 
     private void Update()
@@ -35,11 +38,11 @@ public class BuildingController : MonoBehaviour
             // chase target if out of range or visibility
             if (TargetDistance > _attackDistance || !IsTargetVisible)
             {
-                Debug.Log("Shoot");
+
             }
             else
             {
-                Debug.Log("Stop!");
+                _shooter.TryFire(_target.AimPosition.position, _myTargetable.Team, gameObject);
             }
         }
     }
