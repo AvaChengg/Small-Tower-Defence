@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ServiceModel.Configuration;
 using UnityEngine;
 
-public class BuildingController : MonoBehaviour
+public class BuildingController : MovementState
 {
     [Header("Attacking")]
     [SerializeField] private float _attackDistance = 5.0f;
@@ -15,6 +16,8 @@ public class BuildingController : MonoBehaviour
     private Targetable _myTargetable;
     private Targetable _target;
     private Shooter _shooter;
+
+    private IEnumerator _buildingCurrentState;
 
     // useful properties for AI decision making
     public bool IsTargetValid => _target != null && _target.IsTargetable;
@@ -28,24 +31,53 @@ public class BuildingController : MonoBehaviour
         _shooter = GetComponentInChildren<Shooter>();
     }
 
-    private void Update()
+    private void Start()
     {
-        // find targe if lacking one
-        if(!IsTargetValid) TryFindTarget();
+        ChangeState(IdleState(), _buildingCurrentState);
+    }
 
-        // chase target if valid
-        if(IsTargetValid)
+    protected override void ChangeState(IEnumerator newState, IEnumerator currentState)
+    {
+        base.ChangeState(newState, currentState);
+    }
+
+    private IEnumerator IdleState()
+    {
+        // loop waiting for a target to appear
+        while (true)
         {
-            // chase target if out of range or visibility
-            if (TargetDistance > _attackDistance || !IsTargetVisible)
-            {
+            TryFindTarget();
+            if (IsTargetValid) ChangeState(AttackState(), _buildingCurrentState);
 
+            // pause loop and wait for next frame to execute
+            yield return null;
+        }
+    }
+
+    private IEnumerator AttackState()
+    {
+        // only attack valid targets
+        while (IsTargetValid)
+        {
+            // attack if within range and LoS
+            if (TargetDistance < _attackDistance && IsTargetVisible)
+            {
+                // shoot monsters
+                _shooter.TryFire(_target.AimPosition.position, _myTargetable.Team, gameObject);
             }
             else
             {
-                _shooter.TryFire(_target.AimPosition.position, _myTargetable.Team, gameObject);
+                // if out of range or occluded, idle
+                ChangeState(IdleState(), _buildingCurrentState);
             }
+
+            // wait for next frame
+            yield return null;
         }
+
+        // fall back to idle if target is invalid
+        ChangeState(IdleState(), _buildingCurrentState);
+
     }
 
     // attempt to find valid target within view
