@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BuildingController : MonoBehaviour
 {
+    [Header("Attacking")]
     [SerializeField] private float _attackDistance = 5.0f;
     [SerializeField] private float _viewDistance = 10.0f;
     [SerializeField] private float _viewHalfAngle = 70.0f;
