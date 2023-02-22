@@ -36,6 +36,7 @@ public class Health : MonoBehaviour
         // handle death
         if(!IsAlive)
         {
+            gameObject.layer = LayerMask.NameToLayer("Corpse");
             // invoke OnDeath event
             OnDeath?.Invoke(damageInfo);
         }

@@ -65,18 +65,13 @@ public class BuildingController : MovementState
                 // shoot monsters
                 _shooter.TryFire(_target.AimPosition.position, _myTargetable.Team, gameObject);
             }
-            else
-            {
-                // if out of range or occluded, idle
-                ChangeState(IdleState(), _buildingCurrentState);
-            }
 
             // wait for next frame
             yield return null;
         }
 
-        // fall back to idle if target is invalid
-        ChangeState(IdleState(), _buildingCurrentState);
+        //// fall back to idle if target is invalid
+        //ChangeState(IdleState(), _buildingCurrentState);
 
     }
 
@@ -84,10 +79,10 @@ public class BuildingController : MovementState
     private void TryFindTarget()
     {
         // find all colliders within radius, on specificed mask
-        Collider[] hits = Physics.OverlapSphere(transform.position, _viewDistance, _targetMask);
+        Collider[] _hits = Physics.OverlapSphere(transform.position, _viewDistance, _targetMask);
 
         // iterate through all *possible* targets (may include allies or ourself)
-        foreach (Collider hit in hits)
+        foreach (Collider hit in _hits)
         {
             Debug.DrawLine(_myTargetable.AimPosition.position, hit.transform.position, Color.white);
 
