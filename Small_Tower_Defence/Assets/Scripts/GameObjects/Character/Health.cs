@@ -32,6 +32,13 @@ public class Health : MonoBehaviour
 
         // invoke OnDamaged event
         OnDamaged?.Invoke(damageInfo);
+
+        // handle death
+        if(!IsAlive)
+        {
+            // invoke OnDeath event
+            OnDeath?.Invoke(damageInfo);
+        }
     }
 
     // test damage functionality using Context Menu

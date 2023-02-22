@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : MovementState
 {
     [Header("Patrolling")]
     [SerializeField] private float _patrolPointReachedDistance = 1.0f;
@@ -13,44 +13,36 @@ public class EnemyController : MonoBehaviour
     public PatrolPoint[] PatrolPoints { get { return _patrolPoints; } set { _patrolPoints = value; } }
     [SerializeField] private int _pathIndex = 0;
 
-    private IEnumerator _currentState;
     private CharacterMovement _charcterMovement;
-    private string _currentStateName;
+
+    private IEnumerator _monsterCurrentState;
 
     // Events
     public UnityEvent OnKilled;
 
     private void Awake()
     {
-        //_target = GameObject.Find("Building");
         _charcterMovement = GetComponent<CharacterMovement>();
     }
 
     private void Start()
     {
         // start in patrol state
-        ChangeState(PatrolState());
+        ChangeState(PatrolState(), _monsterCurrentState);
     }
 
-    private void ChangeState(IEnumerator newState)
+    protected override void ChangeState(IEnumerator newState, IEnumerator currentState)
     {
-        // stop current state if it exits
-        if (_currentState != null) StopCoroutine(_currentState);
-
         // reset move speed mulitplier
         _charcterMovement.SpeedMultiplier = 1.0f;
 
-        // assign new current state and start it
-        _currentState = newState;
-        _currentStateName = newState.ToString();
-
-        StartCoroutine(_currentState);
+        base.ChangeState(newState, currentState);
     }
 
     // stop execution of current state
     public void StopState()
     {
-        if(_currentState != null) StopCoroutine(_currentState);
+        if(_monsterCurrentState != null) StopCoroutine(_monsterCurrentState);
         _charcterMovement.Stop();
     }
 
