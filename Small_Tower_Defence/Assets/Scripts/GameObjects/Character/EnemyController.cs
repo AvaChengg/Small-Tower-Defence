@@ -62,7 +62,6 @@ public class EnemyController : MovementState
             float patrolDistance = Vector3.Distance(transform.position, _patrolPoints[_pathIndex].transform.position);
             if (patrolDistance < _patrolPointReachedDistance && _pathIndex != _patrolPoints.Length) _pathIndex ++;
 
-
             // check if moster die or reach the final point
             if (_pathIndex == _patrolPoints.Length)
             {
