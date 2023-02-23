@@ -9,6 +9,7 @@ public class Health : MonoBehaviour
     [SerializeField] private float _max = 100.0f;
 
     //expose useful properties
+    public float CurrentHealth => _current;
     public bool IsAlive => _current > 0f;
     public float Percentage => _current / _max;
 
@@ -37,6 +38,8 @@ public class Health : MonoBehaviour
         if(!IsAlive)
         {
             gameObject.layer = LayerMask.NameToLayer("Corpse");
+            gameObject.tag = "Corpse";
+
             // invoke OnDeath event
             OnDeath?.Invoke(damageInfo);
         }

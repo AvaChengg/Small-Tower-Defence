@@ -5,13 +5,15 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Encounter : LevelController
+public class Encounter : MonoBehaviour
 {
-    private List<EnemyController> _currentEnemies = new List<EnemyController>();    // store enemies that spawned
-    public int CurrentEnemyCounter => _currentEnemies.Count;
+    [SerializeField] private TriggerVolume _terminalPoint;
+    private int _levelCounter = 0;                                 // count levels
 
     [SerializeField] private Transform _patrolPoint;
     private PatrolPoint[] _patrolPointsList;
+
+    public List<EnemyController> CurrentEnemies = new List<EnemyController>();    // store enemies that spawned
 
     public UnityEvent OnEncounterStarted;
     public UnityEvent OnEncounterFinished;
@@ -26,8 +28,8 @@ public class Encounter : LevelController
     protected void SpawnEnemy(EnemyController[] prefabs)
     {
         // check if the game is over or not
-        if (_isGameOver == true) return;
-
+        if (_terminalPoint.IsGameOver == true) return;
+        Debug.Log("_levelCounter: " + _levelCounter);
         EnemyController spawned = Instantiate(prefabs[_levelCounter], transform.position, transform.rotation) as EnemyController;
 
         // get the patrol point to the enemy controller
@@ -35,25 +37,19 @@ public class Encounter : LevelController
         spawned.PatrolPoints = _patrolPointsList;
 
         // add to list for tracking and listen for death
-        _currentEnemies.Add(spawned);
+        CurrentEnemies.Add(spawned);
     }
 
     // callback from enemies reaching the ending point
-    protected void KillEnemy(EnemyController enemy)
+    public void RemoveEnemy(EnemyController enemy)
     {
         // remove enemy from the list
-        if(_currentEnemies.Contains(enemy))
+        if(CurrentEnemies.Contains(enemy))
         {
-            _currentEnemies.Remove(enemy);
-            if (_lives != 0) _lives--;
-        }
+            CurrentEnemies.Remove(enemy);
 
-        // check if it's game over
-        if(_lives == 0)
-        {
-            _isGameOver = true;
-
-            // show game over UI
+            // level up
+            if (CurrentEnemies.Count == 0 && !_terminalPoint.IsGameOver) _levelCounter++;
         }
     }
 }

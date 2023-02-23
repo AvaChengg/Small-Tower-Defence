@@ -29,7 +29,6 @@ public class Shooter : WeaponController
             // try and get target, check team (for enemy), then try to damage health
             if (hit.collider.TryGetComponent(out Targetable target) &&
                 target.Team != myTeam &&
-                target.IsTargetable &&
                 hit.collider.TryGetComponent(out Health targetHealth))
             {
                 // if above check was successful, we hit an enemy
