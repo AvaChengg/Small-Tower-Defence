@@ -14,7 +14,6 @@ public class EnemyController : MovementState
     [SerializeField] private int _pathIndex = 0;
 
     private CharacterMovement _charcterMovement;
-
     private IEnumerator _monsterCurrentState;
 
     // Events
@@ -35,14 +34,19 @@ public class EnemyController : MovementState
     {
         // reset move speed mulitplier
         _charcterMovement.SpeedMultiplier = 1.0f;
+        _monsterCurrentState = newState;
 
         base.ChangeState(newState, currentState);
+
     }
 
     // stop execution of current state
     public void StopState()
     {
-        if(_monsterCurrentState != null) StopCoroutine(_monsterCurrentState);
+        if (_monsterCurrentState != null)
+        {
+            StopCoroutine(_monsterCurrentState);
+        }
         _charcterMovement.Stop();
     }
 
@@ -56,13 +60,18 @@ public class EnemyController : MovementState
         {
             // find new patrol point if existing reached
             float patrolDistance = Vector3.Distance(transform.position, _patrolPoints[_pathIndex].transform.position);
-            if (patrolDistance < _patrolPointReachedDistance) _pathIndex++;
+            if (patrolDistance < _patrolPointReachedDistance && _pathIndex != _patrolPoints.Length) _pathIndex ++;
+
+
+            // check if moster die or reach the final point
+            if (_pathIndex == _patrolPoints.Length)
+            {
+                StopState();
+                yield return false;
+            }
 
             // move to patrol point
             _charcterMovement.MoveTo(_patrolPoints[_pathIndex].transform.position);
-
-            // check if moster die or reach the final point
-            //if (_pathIndex + 1 == _patrolPoints.Length) _charcterMovement.Stop();
 
             // wait for next frame
             yield return null;

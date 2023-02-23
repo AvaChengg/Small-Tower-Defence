@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MovementState : MonoBehaviour
 {
-    //protected IEnumerator _monsterCurrentState;
     protected string _currentStateName;
 
     protected virtual void ChangeState(IEnumerator newState, IEnumerator currentState)
@@ -14,7 +13,6 @@ public class MovementState : MonoBehaviour
 
         // assign new current state and start it
         currentState = newState;
-        //currentState = newState.ToString();
 
         StartCoroutine(currentState);
     }

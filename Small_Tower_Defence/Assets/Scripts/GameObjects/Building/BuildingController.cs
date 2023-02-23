@@ -38,6 +38,7 @@ public class BuildingController : MovementState
 
     protected override void ChangeState(IEnumerator newState, IEnumerator currentState)
     {
+        _buildingCurrentState = newState;
         base.ChangeState(newState, currentState);
     }
 
@@ -70,8 +71,8 @@ public class BuildingController : MovementState
             yield return null;
         }
 
-        //// fall back to idle if target is invalid
-        //ChangeState(IdleState(), _buildingCurrentState);
+        // fall back to idle if target is invalid
+        ChangeState(IdleState(), _buildingCurrentState);
 
     }
 
