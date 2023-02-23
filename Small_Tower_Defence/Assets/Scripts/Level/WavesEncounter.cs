@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class WavesEncounter : Encounter
 {
-    [Header("PatrolPoint Setting")]
-    public EnemyController[] _monsters;     // spawn the monsters prefab
+    [Header("Spawning Setting")]
     public float _spawnInterval = 0.5f;     // spawn monster interval
     public int quantity = 10;               // spawn monster quantity
 
     public override void StartEncounter()
     {
+        if (_isWin) return;
         base.StartEncounter();
 
         StartCoroutine(SpawnWaves());

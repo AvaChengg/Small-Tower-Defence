@@ -8,12 +8,14 @@ using UnityEngine.Events;
 public class Encounter : MonoBehaviour
 {
     [SerializeField] private TriggerVolume _terminalPoint;
-    private int _levelCounter = 0;                                 // count levels
-
     [SerializeField] private Transform _patrolPoint;
+    [SerializeField] protected EnemyController[] _monsters;                         // spawn the monsters prefab
+
+    protected bool _isWin;
+    private int _levelCounter = 0;                                                  // count levels
     private PatrolPoint[] _patrolPointsList;
 
-    public List<EnemyController> CurrentEnemies = new List<EnemyController>();    // store enemies that spawned
+    public List<EnemyController> CurrentEnemies = new List<EnemyController>();      // store enemies that spawned
 
     public UnityEvent OnEncounterStarted;
     public UnityEvent OnEncounterFinished;
@@ -44,12 +46,17 @@ public class Encounter : MonoBehaviour
     public void RemoveEnemy(EnemyController enemy)
     {
         // remove enemy from the list
-        if(CurrentEnemies.Contains(enemy))
-        {
-            CurrentEnemies.Remove(enemy);
+        if (CurrentEnemies.Contains(enemy)) CurrentEnemies.Remove(enemy);
 
-            // level up
-            if (CurrentEnemies.Count == 0 && !_terminalPoint.IsGameOver) _levelCounter++;
+        // level up
+        if (CurrentEnemies.Count == 0 && !_terminalPoint.IsGameOver) _levelCounter++;
+
+        // check win
+        if (_monsters.Length == _levelCounter)
+        {
+            // Win UI
+            _isWin = true;
+            Debug.Log("You Win!");
         }
     }
 }

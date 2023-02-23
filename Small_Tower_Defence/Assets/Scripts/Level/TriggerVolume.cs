@@ -34,6 +34,7 @@ public class TriggerVolume : MonoBehaviour
             IsGameOver = true;
 
             // show game over UI
+            Debug.Log("Game Over");
         }
     }
 }

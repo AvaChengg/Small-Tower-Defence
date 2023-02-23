@@ -121,8 +121,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 115eca1d8d989724c9af16c0ca7e10cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lives: 30
+  _terminalPoint: {fileID: 0}
   _patrolPoint: {fileID: 8693488311061967902}
+  _monsters:
+  - {fileID: 1398522471950706464, guid: 78d23151a57030f49b97663d9cd0d0ed, type: 3}
+  - {fileID: 4428102855066539230, guid: 73fdd649c8a8f064784e556af7f1ead1, type: 3}
+  CurrentEnemies: []
   OnEncounterStarted:
     m_PersistentCalls:
       m_Calls: []
@@ -132,7 +136,5 @@ MonoBehaviour:
   OnUpdateObjected:
     m_PersistentCalls:
       m_Calls: []
-  _monsters:
-  - {fileID: 1398522471950706464, guid: 78d23151a57030f49b97663d9cd0d0ed, type: 3}
   _spawnInterval: 0.5
   quantity: 10
