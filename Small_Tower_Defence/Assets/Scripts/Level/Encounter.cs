@@ -29,7 +29,7 @@ public class Encounter : MonoBehaviour
     {
         // check if the game is over or not
         if (_terminalPoint.IsGameOver == true) return;
-        Debug.Log("_levelCounter: " + _levelCounter);
+
         EnemyController spawned = Instantiate(prefabs[_levelCounter], transform.position, transform.rotation) as EnemyController;
 
         // get the patrol point to the enemy controller
