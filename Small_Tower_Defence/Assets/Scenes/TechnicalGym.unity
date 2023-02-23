@@ -1330,6 +1330,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: KillZone
       objectReference: {fileID: 0}
+    - target: {fileID: 3566331518349846297, guid: d44bbf05205c93d4ab46980b2574b5e9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3566331518349846301, guid: d44bbf05205c93d4ab46980b2574b5e9, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -1391,6 +1395,14 @@ PrefabInstance:
       propertyPath: _terminalPoint
       value: 
       objectReference: {fileID: 1345178790}
+    - target: {fileID: 8693488312870609104, guid: 251ae79c91add0945950dc5381bf0fcf, type: 3}
+      propertyPath: _monsters.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8693488312870609104, guid: 251ae79c91add0945950dc5381bf0fcf, type: 3}
+      propertyPath: _monsters.Array.data[1]
+      value: 
+      objectReference: {fileID: 4428102855066539230, guid: 73fdd649c8a8f064784e556af7f1ead1, type: 3}
     - target: {fileID: 8693488312870609105, guid: 251ae79c91add0945950dc5381bf0fcf, type: 3}
       propertyPath: m_RootOrder
       value: 5
