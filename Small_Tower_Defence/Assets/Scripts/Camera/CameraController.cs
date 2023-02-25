@@ -10,9 +10,6 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float _lookOffset = 1.0f;
     [SerializeField] private float _cameraAngle = 45.0f;
     [SerializeField] private float _defaultZoom = 5.0f;
-    [SerializeField] private float _zoomMax = 2.0f;
-    [SerializeField] private float _zoomMin = 10.0f;
-    [SerializeField] private float _rotationSpeed = 2.0f;
     [SerializeField] private float _targetSpeed = 8.0f;
     [SerializeField] private LayerMask _groundMask;
 
@@ -23,7 +20,8 @@ public class CameraController : MonoBehaviour
     private Targetable _targetable;
     private bool _isSelect;
 
-    public Vector3 MoveTarget;
+    [HideInInspector] public Vector3 MoveTarget;
+    [HideInInspector] public Vector3 MousePos;
 
     private void Awake()
     {
@@ -41,8 +39,6 @@ public class CameraController : MonoBehaviour
         _cameraPosition = (Vector3.up * _lookOffset) + (Quaternion.AngleAxis(_cameraAngle, Vector3.right) * Vector3.back) * _defaultZoom;
 
         _levelCamera.transform.position = _cameraPosition;
-
-        Debug.Log(transform.position);
     }
 
     // receive move input from PlayerInput component (Vector2)
@@ -51,8 +47,6 @@ public class CameraController : MonoBehaviour
         // read Vector2 data from InputValue
         Vector2 value = context.ReadValue<Vector2>();
         _moveInput = new Vector3(value.x, 0, value.y);
-
-        Debug.DrawRay(transform.position, _moveInput, Color.magenta, 0.1f);
     }
 
     public void OnSelect()
@@ -69,24 +63,26 @@ public class CameraController : MonoBehaviour
     {
         if (_cameraMovement == null) return;
 
+        MousePos = Mouse.current.position.ReadValue();
         // send move input to CameraMovement component
         _cameraMovement.SetMoveInput();
-
-        //_cameraMovement.SetMouseMoveInput();
+        _cameraMovement.SetMouseMoveInput();
 
         // find mouse ray
-        //Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray mouseRay = Camera.main.ScreenPointToRay(MousePos);
 
         //// cast mouseRay against groundMask
-        //if (Physics.Raycast(mouseRay, out RaycastHit hit, Mathf.Infinity, _groundMask))
-        //{
-        //    // place building
-        //    Vector3 firePoint = hit.point - mouseRay.direction;
-        //    if (_isSelect)
-        //    {
+        if (Physics.Raycast(mouseRay, out RaycastHit hit, Mathf.Infinity, _groundMask))
+        {
+            // place building
+            Vector3 firePoint = hit.point - mouseRay.direction;
+            Debug.DrawLine(_levelCamera.transform.position, hit.transform.position, Color.red);
+            //Debug.DrawRay(_levelCamera.transform.position, mouseRay.direction, Color.red, 0.1f);
+            if (_isSelect)
+            {
 
-        //    }
-        //}
+            }
+        }
 
     }
 

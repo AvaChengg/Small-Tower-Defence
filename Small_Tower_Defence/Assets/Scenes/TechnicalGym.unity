@@ -449,15 +449,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lookOffset: 1
   _cameraAngle: 45
-  _defaultZoom: 5
-  _zoomMax: 2
-  _zoomMin: 10
-  _rotationSpeed: 2
+  _defaultZoom: 10
   _targetSpeed: 8
   _groundMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   MoveTarget: {x: 0, y: 0, z: 0}
+  MousePos: {x: 0, y: 0, z: 0}
 --- !u!114 &770552498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -471,6 +469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 4
+  _panBorderThickness: 20
 --- !u!4 &770552499
 Transform:
   m_ObjectHideFlags: 0
