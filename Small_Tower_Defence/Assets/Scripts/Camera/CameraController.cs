@@ -20,6 +20,7 @@ public class CameraController : MonoBehaviour
     private Targetable _targetable;
     private bool _isSelect;
 
+    [HideInInspector] public bool IsMouseInput;
     [HideInInspector] public Vector3 MoveTarget;
     [HideInInspector] public Vector3 MousePos;
 
@@ -44,6 +45,9 @@ public class CameraController : MonoBehaviour
     // receive move input from PlayerInput component (Vector2)
     public void OnMove(InputAction.CallbackContext context)
     {
+        // check if it's input by keyboard or mouse
+        IsMouseInput = false;
+
         // read Vector2 data from InputValue
         Vector2 value = context.ReadValue<Vector2>();
         _moveInput = new Vector3(value.x, 0, value.y);
@@ -63,12 +67,12 @@ public class CameraController : MonoBehaviour
     {
         if (_cameraMovement == null) return;
 
-        MousePos = Mouse.current.position.ReadValue();
         // send move input to CameraMovement component
-        _cameraMovement.SetMoveInput();
-        _cameraMovement.SetMouseMoveInput();
+        _cameraMovement.SetMoveInput(IsMouseInput);
+        //_cameraMovement.SetMouseMoveInput(IsMouseInput);
 
         // find mouse ray
+        MousePos = Mouse.current.position.ReadValue();
         Ray mouseRay = Camera.main.ScreenPointToRay(MousePos);
 
         //// cast mouseRay against groundMask

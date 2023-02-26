@@ -16,28 +16,34 @@ public class CameraMovement : MonoBehaviour
         _cameraController = GetComponent<CameraController>();
     }
 
-    public void SetMoveInput()
+    public void SetMoveInput(bool isMouseInput)
     {
-        transform.position = Vector3.Lerp(transform.position, _cameraController.MoveTarget, Time.deltaTime * _moveSpeed);
+        if (isMouseInput) return;
+
+        transform.position = Vector3.Lerp(transform.position, _cameraController.MoveTarget, _moveSpeed * Time.deltaTime);
     }
 
-    public void SetMouseMoveInput()
+    public void SetMouseMoveInput(bool isMouseInput)
     {
         if (_cameraController.MousePos.y >= Screen.height - _panBorderThickness)
         {
-            transform.Translate(Vector3.forward * Time.deltaTime * _moveSpeed, Space.World);
+            _cameraController.IsMouseInput = true;
+            transform.Translate(Vector3.forward * _moveSpeed * Time.deltaTime, Space.World);
         }
         if (_cameraController.MousePos.y <= _panBorderThickness)
         {
-            transform.Translate(Vector3.back * Time.deltaTime * _moveSpeed, Space.World);
+            _cameraController.IsMouseInput = true;
+            transform.Translate(Vector3.back * _moveSpeed * Time.deltaTime, Space.World);
         }
         if (_cameraController.MousePos.x >= Screen.width - _panBorderThickness)
         {
-            transform.Translate(Vector3.right * Time.deltaTime * _moveSpeed, Space.World);
+            _cameraController.IsMouseInput = true;
+            transform.Translate(Vector3.right * _moveSpeed * Time.deltaTime, Space.World);
         }
         if (_cameraController.MousePos.x <= _panBorderThickness)
         {
-            transform.Translate(Vector3.left * Time.deltaTime * _moveSpeed, Space.World);
+            _cameraController.IsMouseInput = true;
+            transform.Translate(Vector3.left * _moveSpeed * Time.deltaTime, Space.World);
         }
     }
 
