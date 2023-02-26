@@ -81,6 +81,12 @@ public class CameraController : MonoBehaviour
             // place building
             Vector3 firePoint = hit.point - mouseRay.direction;
             Debug.DrawLine(_levelCamera.transform.position, hit.transform.position, Color.red);
+
+            if (hit.transform.TryGetComponent(out Targetable possibleTarget) && possibleTarget.Team == 3)
+            {
+                hit.transform.GetComponent<Renderer>().material.SetColor("_Occlusion", Color.green);
+            }
+
             //Debug.DrawRay(_levelCamera.transform.position, mouseRay.direction, Color.red, 0.1f);
             if (_isSelect)
             {
