@@ -454,6 +454,7 @@ MonoBehaviour:
   _groundMask:
     serializedVersion: 2
     m_Bits: 1
+  IsMouseInput: 0
   MoveTarget: {x: 0, y: 0, z: 0}
   MousePos: {x: 0, y: 0, z: 0}
 --- !u!114 &770552498
