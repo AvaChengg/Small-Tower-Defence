@@ -15,11 +15,11 @@ public class CameraController : MonoBehaviour
 
     private Vector3 _moveInput;
     private Vector3 _cameraPosition;
-    private CinemachineVirtualCamera _levelCamera;
+    private PlayerController _playerController;
     private CameraMovement _cameraMovement;
-    private Targetable _targetable;
-    private bool _isSelect;
+    private CinemachineVirtualCamera _levelCamera;
 
+    [HideInInspector] public LayerMask GroundMask => _groundMask;
     [HideInInspector] public bool IsMouseInput;
     [HideInInspector] public Vector3 MoveTarget;
     [HideInInspector] public Vector3 MousePos;
@@ -27,7 +27,7 @@ public class CameraController : MonoBehaviour
     private void Awake()
     {
         _cameraMovement = GetComponent<CameraMovement>();
-        _targetable = GetComponent<Targetable>();
+        _playerController = GetComponent<PlayerController>();
     }
     private void Start()
     {
@@ -53,9 +53,11 @@ public class CameraController : MonoBehaviour
         _moveInput = new Vector3(value.x, 0, value.y);
     }
 
-    public void OnSelect()
+    // place the building
+    public void OnPlace(InputAction.CallbackContext context)
     {
-        _isSelect = true;
+        if(!_playerController.IsSpot) return;
+        _playerController.PlaceBuliding();
     }
 
     private void FixedUpdate()
@@ -71,29 +73,5 @@ public class CameraController : MonoBehaviour
         _cameraMovement.SetMoveInput(IsMouseInput);
         //_cameraMovement.SetMouseMoveInput(IsMouseInput);
 
-        // find mouse ray
-        MousePos = Mouse.current.position.ReadValue();
-        Ray mouseRay = Camera.main.ScreenPointToRay(MousePos);
-
-        //// cast mouseRay against groundMask
-        if (Physics.Raycast(mouseRay, out RaycastHit hit, Mathf.Infinity, _groundMask))
-        {
-            // place building
-            Vector3 firePoint = hit.point - mouseRay.direction;
-            Debug.DrawLine(_levelCamera.transform.position, hit.transform.position, Color.red);
-
-            if (hit.transform.TryGetComponent(out Targetable possibleTarget) && possibleTarget.Team == 3)
-            {
-                hit.transform.GetComponent<Renderer>().material.SetColor("_Occlusion", Color.green);
-            }
-
-            //Debug.DrawRay(_levelCamera.transform.position, mouseRay.direction, Color.red, 0.1f);
-            if (_isSelect)
-            {
-
-            }
-        }
-
     }
-
 }
