@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             if (_placementSpot == null) return;
+            IsSpot = false;
             _placementSpot.GetComponent<Renderer>().material.color = _defaultColor;
         }
     }
