@@ -6,7 +6,7 @@ public class TriggerVolume : MonoBehaviour
     [SerializeField] private int _lives = 30;                    // player lives
     [SerializeField] private WavesEncounter _wavesEncounter;
 
-    public bool IsGameOver;
+    [HideInInspector] public bool IsGameOver;
     public UnityEvent<GameObject> OnEnter;
 
     private void OnTriggerEnter(Collider other)
