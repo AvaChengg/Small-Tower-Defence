@@ -7,7 +7,14 @@ public class TriggerVolume : MonoBehaviour
     [SerializeField] private WavesEncounter _wavesEncounter;
 
     [HideInInspector] public bool IsGameOver;
+
     public UnityEvent<GameObject> OnEnter;
+    public UnityEvent<string> OnUpdateLives;
+
+    private void Start()
+    {
+        OnUpdateLives.Invoke("Lives: " + _lives);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,6 +28,9 @@ public class TriggerVolume : MonoBehaviour
 
         // kill monsters to start next level
         OnEnter.Invoke(other.gameObject);
+
+        // update the lives to UI
+        OnUpdateLives.Invoke("Lives: " + _lives);
     }
 
     private void CheckLives()
