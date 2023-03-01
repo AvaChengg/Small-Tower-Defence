@@ -11,7 +11,7 @@ public class EnemyController : MovementState
 
     // get patrol points data from Encounter.cs and then store the date to _patrolPoints
     public PatrolPoint[] PatrolPoints { get { return _patrolPoints; } set { _patrolPoints = value; } }
-    [SerializeField] private int _pathIndex = 0;
+    private int _pathIndex = 0;
 
     private CharacterMovement _charcterMovement;
     private IEnumerator _monsterCurrentState;
