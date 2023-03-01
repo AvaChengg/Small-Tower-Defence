@@ -39,6 +39,12 @@ public class CameraController : MonoBehaviour
         _levelCamera.transform.position = _cameraPosition;
     }
 
+    // return to original position
+    public void OnReturnCamera(InputAction.CallbackContext context)
+    {
+        _levelCamera.transform.position = _cameraPosition;
+    }
+
     // stop moving camera by mouse
     public void OnStopMovingCamera(InputAction.CallbackContext context)
     {
@@ -58,6 +64,5 @@ public class CameraController : MonoBehaviour
 
         // send move input to CameraMovement component
         _cameraMovement.SetMouseMoveInput();
-
     }
 }
