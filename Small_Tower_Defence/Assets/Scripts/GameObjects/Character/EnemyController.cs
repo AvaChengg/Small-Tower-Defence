@@ -7,7 +7,7 @@ public class EnemyController : MovementState
     [Header("Patrolling")]
     [SerializeField] private float _patrolPointReachedDistance = 1.0f;
     [SerializeField] private float _patrolSpeed = 0.5f;
-    [SerializeField] private PatrolPoint[] _patrolPoints;
+    private PatrolPoint[] _patrolPoints;
 
     // get patrol points data from Encounter.cs and then store the date to _patrolPoints
     public PatrolPoint[] PatrolPoints { get { return _patrolPoints; } set { _patrolPoints = value; } }
