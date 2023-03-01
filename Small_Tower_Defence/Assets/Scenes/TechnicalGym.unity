@@ -1157,6 +1157,26 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 543532072}
     - target: {fileID: 3204186711335815738, guid: 9ba17c22eb2c89749b5d8cf40d78775c, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204186711335815738, guid: 9ba17c22eb2c89749b5d8cf40d78775c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_ActionId
+      value: c706b57c-1710-4166-8b97-2a2384fcfa5b
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204186711335815738, guid: 9ba17c22eb2c89749b5d8cf40d78775c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_ActionName
+      value: Player/New action
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204186711335815738, guid: 9ba17c22eb2c89749b5d8cf40d78775c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204186711335815738, guid: 9ba17c22eb2c89749b5d8cf40d78775c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204186711335815738, guid: 9ba17c22eb2c89749b5d8cf40d78775c, type: 3}
       propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 770552497}
@@ -1164,6 +1184,26 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 770552497}
+    - target: {fileID: 3204186711335815738, guid: 9ba17c22eb2c89749b5d8cf40d78775c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 770552497}
+    - target: {fileID: 3204186711335815738, guid: 9ba17c22eb2c89749b5d8cf40d78775c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204186711335815738, guid: 9ba17c22eb2c89749b5d8cf40d78775c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnStopMovingCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204186711335815738, guid: 9ba17c22eb2c89749b5d8cf40d78775c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CameraController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204186711335815738, guid: 9ba17c22eb2c89749b5d8cf40d78775c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3204186711335815739, guid: 9ba17c22eb2c89749b5d8cf40d78775c, type: 3}
       propertyPath: m_Name
       value: GameManager
