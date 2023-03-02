@@ -1,6 +1,4 @@
 using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,17 +8,15 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float _lookOffset = 1.0f;
     [SerializeField] private float _cameraAngle = 45.0f;
     [SerializeField] private float _defaultZoom = 5.0f;
-    [SerializeField] private float _targetSpeed = 8.0f;
     [SerializeField] private LayerMask _groundMask;
 
-    private Vector3 _moveInput;
     private Vector3 _cameraPosition;
     private PlayerController _playerController;
     private CameraMovement _cameraMovement;
     private CinemachineVirtualCamera _levelCamera;
 
+    [HideInInspector] public bool CanMove;
     [HideInInspector] public LayerMask GroundMask => _groundMask;
-    [HideInInspector] public bool IsMouseInput;
     [HideInInspector] public Vector3 MoveTarget;
     [HideInInspector] public Vector3 MousePos;
 
@@ -29,6 +25,7 @@ public class CameraController : MonoBehaviour
         _cameraMovement = GetComponent<CameraMovement>();
         _playerController = GetComponent<PlayerController>();
     }
+
     private void Start()
     {
         _levelCamera = GetComponentInChildren<CinemachineVirtualCamera>();
@@ -42,15 +39,16 @@ public class CameraController : MonoBehaviour
         _levelCamera.transform.position = _cameraPosition;
     }
 
-    // receive move input from PlayerInput component (Vector2)
-    public void OnMove(InputAction.CallbackContext context)
+    // return to original position
+    public void OnReturnCamera(InputAction.CallbackContext context)
     {
-        // check if it's input by keyboard or mouse
-        IsMouseInput = false;
+        _levelCamera.transform.position = _cameraPosition;
+    }
 
-        // read Vector2 data from InputValue
-        Vector2 value = context.ReadValue<Vector2>();
-        _moveInput = new Vector3(value.x, 0, value.y);
+    // stop moving camera by mouse
+    public void OnStopMovingCamera(InputAction.CallbackContext context)
+    {
+        CanMove = !CanMove;
     }
 
     // place the building
@@ -60,18 +58,11 @@ public class CameraController : MonoBehaviour
         _playerController.PlaceBuliding();
     }
 
-    private void FixedUpdate()
-    {
-        MoveTarget += (transform.forward * _moveInput.z + transform.right * _moveInput.x) * Time.fixedDeltaTime * _targetSpeed;
-    }
-
     private void Update()
     {
         if (_cameraMovement == null) return;
 
         // send move input to CameraMovement component
-        _cameraMovement.SetMoveInput(IsMouseInput);
-        //_cameraMovement.SetMouseMoveInput(IsMouseInput);
-
+        _cameraMovement.SetMouseMoveInput();
     }
 }

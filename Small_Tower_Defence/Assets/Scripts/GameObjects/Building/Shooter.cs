@@ -31,8 +31,6 @@ public class Shooter : WeaponController
                 target.Team != myTeam &&
                 hit.collider.TryGetComponent(out Health targetHealth))
             {
-                // if above check was successful, we hit an enemy
-
                 // create damage info
                 DamageInfo info = new DamageInfo();
                 info.Amount = _damage;

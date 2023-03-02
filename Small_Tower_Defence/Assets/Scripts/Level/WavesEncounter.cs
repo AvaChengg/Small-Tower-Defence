@@ -6,8 +6,9 @@ using UnityEngine;
 public class WavesEncounter : Encounter
 {
     [Header("Spawning Setting")]
-    public float _spawnInterval = 0.5f;     // spawn monster interval
-    public int quantity = 10;               // spawn monster quantity
+    [SerializeField] private float _spawnInterval = 0.5f;     // spawn monster interval
+    [SerializeField] private int _quantity = 10;              // spawn monster quantity
+    public int Reward = 10;                                   // Reward money
 
     public override void StartEncounter()
     {
@@ -19,7 +20,7 @@ public class WavesEncounter : Encounter
 
     private IEnumerator SpawnWaves()
     {
-        for(int i = 0; i <= quantity - 1; i++)
+        for(int i = 0; i <= _quantity - 1; i++)
         {
             SpawnEnemy(_monsters);
 
