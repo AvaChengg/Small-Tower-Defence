@@ -45,6 +45,11 @@ public class Health : MonoBehaviour
         }
     }
 
+    public void Destroy()
+    {
+        Destroy(gameObject);
+    }
+
     // test damage functionality using Context Menu
     [ContextMenu("Test Damage 20%")]
     public void TestDamage()
