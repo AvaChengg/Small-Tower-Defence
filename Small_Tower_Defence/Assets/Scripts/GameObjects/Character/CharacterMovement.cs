@@ -11,6 +11,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField]private float _acceleration = 10.0f;
     [SerializeField]private float _turnSpeed = 10.0f;
     [field: SerializeField] public float SpeedMultiplier { get; set; } = 1.0f;
+    [HideInInspector] public float MoveSpeed { get => _moveSpeed; set => _moveSpeed = value; }
 
     private Vector3 _moveInput;
     private Vector3 _lookDirection;

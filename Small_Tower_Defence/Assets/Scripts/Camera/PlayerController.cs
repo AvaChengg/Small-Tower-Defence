@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
                 Instantiate(_buildings[1], _hit.transform.position, _hit.transform.rotation);
                 break;
         }
-        _placementSpot.SetActive(false);
+        Destroy(_placementSpot);
         IsSpot = false;
         _isSelect = false;
     }

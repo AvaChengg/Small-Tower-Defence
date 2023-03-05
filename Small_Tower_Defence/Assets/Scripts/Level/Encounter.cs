@@ -15,7 +15,7 @@ public class Encounter : MonoBehaviour
     private int _levelCounter = 0;                                                  // count levels
     private PatrolPoint[] _patrolPointsList;
 
-    [HideInInspector] public List<EnemyController> CurrentEnemies = new List<EnemyController>();      // store enemies that spawned
+    public List<EnemyController> CurrentEnemies = new List<EnemyController>();      // store enemies that spawned
 
     public UnityEvent OnEncounterStarted;
     public UnityEvent OnEncounterFinished;

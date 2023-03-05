@@ -21,8 +21,8 @@ public class TriggerVolume : MonoBehaviour
         if (!other.TryGetComponent(out EnemyController enemy)) return;
 
         // deactivated and remove the monster in list
+        Destroy(enemy.gameObject);
         _wavesEncounter.RemoveEnemy(enemy);
-        enemy.gameObject.SetActive(false);
 
         CheckLives();
 

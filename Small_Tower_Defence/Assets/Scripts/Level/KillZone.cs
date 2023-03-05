@@ -21,8 +21,8 @@ public class KillZone : MonoBehaviour
 
         if (health.CurrentHealth <= 0)
         {
+            Destroy(enemy.gameObject);
             _wavesEncounter.RemoveEnemy(enemy);
-            enemy.gameObject.SetActive(false);
 
             // add money to the player
             int reward = _wavesEncounter.Reward;

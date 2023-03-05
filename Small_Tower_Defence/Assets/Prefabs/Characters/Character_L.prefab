@@ -39,6 +39,7 @@ Transform:
   m_Children:
   - {fileID: 2655293167396604581}
   - {fileID: 7029009749595940558}
+  - {fileID: 5150664213486490136}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -139,10 +140,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed54e57873df98f428565441cd1cd178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _attackDistance: 5
+  _viewDistance: 10
+  _viewHalfAngle: 70
+  _occlusionMask:
+    serializedVersion: 2
+    m_Bits: 1
+  _targetMask:
+    serializedVersion: 2
+    m_Bits: 64
   _patrolPointReachedDistance: 1
   _patrolSpeed: 0.5
-  _patrolPoints: []
-  _pathIndex: 0
   OnKilled:
     m_PersistentCalls:
       m_Calls: []
@@ -216,18 +224,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1398522471950706476}
-        m_TargetAssemblyTypeName: UnityEngine.Rigidbody, UnityEngine
-        m_MethodName: set_useGravity
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 8358182179876508538}
         m_TargetAssemblyTypeName: Targetable, Assembly-CSharp
         m_MethodName: set_IsTargetable
@@ -252,18 +248,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1398522471950706477}
-        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
-        m_MethodName: set_sharedMaterial
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 13400000, guid: dde4c73cc969b2d44b98ed4602b7aa50, type: 2}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.PhysicMaterial, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1398522471950706464}
         m_TargetAssemblyTypeName: EnemyController, Assembly-CSharp
         m_MethodName: StopState
@@ -273,7 +257,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: _monsterCurrentState
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &8358182179876508538
@@ -436,4 +420,70 @@ RectTransform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7346182030808590162, guid: 2864717c5491fd048ba12b81454c6848, type: 3}
   m_PrefabInstance: {fileID: 4524490632943971300}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4555139058805100194
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1504824298904774342}
+    m_Modifications:
+    - target: {fileID: 2044964151579548073, guid: e6892edb0e338ae4191e4c1be051b597, type: 3}
+      propertyPath: m_Name
+      value: Muzzle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668812486406315194, guid: e6892edb0e338ae4191e4c1be051b597, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668812486406315194, guid: e6892edb0e338ae4191e4c1be051b597, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668812486406315194, guid: e6892edb0e338ae4191e4c1be051b597, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668812486406315194, guid: e6892edb0e338ae4191e4c1be051b597, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668812486406315194, guid: e6892edb0e338ae4191e4c1be051b597, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668812486406315194, guid: e6892edb0e338ae4191e4c1be051b597, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668812486406315194, guid: e6892edb0e338ae4191e4c1be051b597, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668812486406315194, guid: e6892edb0e338ae4191e4c1be051b597, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668812486406315194, guid: e6892edb0e338ae4191e4c1be051b597, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668812486406315194, guid: e6892edb0e338ae4191e4c1be051b597, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668812486406315194, guid: e6892edb0e338ae4191e4c1be051b597, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8926227711485878419, guid: e6892edb0e338ae4191e4c1be051b597, type: 3}
+      propertyPath: _hitMask.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e6892edb0e338ae4191e4c1be051b597, type: 3}
+--- !u!4 &5150664213486490136 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8668812486406315194, guid: e6892edb0e338ae4191e4c1be051b597, type: 3}
+  m_PrefabInstance: {fileID: 4555139058805100194}
   m_PrefabAsset: {fileID: 0}

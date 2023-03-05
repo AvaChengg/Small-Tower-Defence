@@ -39,6 +39,7 @@ Transform:
   m_Children:
   - {fileID: 3300762553046357388}
   - {fileID: 5788975832284877147}
+  - {fileID: 6124305367823584794}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -136,10 +137,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed54e57873df98f428565441cd1cd178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _attackDistance: 5
+  _viewDistance: 10
+  _viewHalfAngle: 70
+  _occlusionMask:
+    serializedVersion: 2
+    m_Bits: 1
+  _targetMask:
+    serializedVersion: 2
+    m_Bits: 64
   _patrolPointReachedDistance: 1
   _patrolSpeed: 0.5
-  _patrolPoints: []
-  _pathIndex: 0
   OnKilled:
     m_PersistentCalls:
       m_Calls: []
@@ -193,6 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3966c78135ef47d439f976064b33d265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _TowerPlacementSpot: {fileID: 0}
   _current: 100
   _max: 100
   OnDamaged:
@@ -213,18 +222,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 5866179446791652987}
-        m_TargetAssemblyTypeName: UnityEngine.Rigidbody, UnityEngine
-        m_MethodName: set_useGravity
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 3638256534577297102}
         m_TargetAssemblyTypeName: Targetable, Assembly-CSharp
         m_MethodName: set_IsTargetable
@@ -244,18 +241,6 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 4240526552566445988}
-        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
-        m_MethodName: set_material
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 13400000, guid: dde4c73cc969b2d44b98ed4602b7aa50, type: 2}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.PhysicMaterial, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -319,6 +304,72 @@ Transform:
   m_Father: {fileID: 5877468669643910394}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &3220118050478789280
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5877468669643910394}
+    m_Modifications:
+    - target: {fileID: 2044964151579548073, guid: e6892edb0e338ae4191e4c1be051b597, type: 3}
+      propertyPath: m_Name
+      value: Muzzle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668812486406315194, guid: e6892edb0e338ae4191e4c1be051b597, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668812486406315194, guid: e6892edb0e338ae4191e4c1be051b597, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668812486406315194, guid: e6892edb0e338ae4191e4c1be051b597, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668812486406315194, guid: e6892edb0e338ae4191e4c1be051b597, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668812486406315194, guid: e6892edb0e338ae4191e4c1be051b597, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668812486406315194, guid: e6892edb0e338ae4191e4c1be051b597, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668812486406315194, guid: e6892edb0e338ae4191e4c1be051b597, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668812486406315194, guid: e6892edb0e338ae4191e4c1be051b597, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668812486406315194, guid: e6892edb0e338ae4191e4c1be051b597, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668812486406315194, guid: e6892edb0e338ae4191e4c1be051b597, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668812486406315194, guid: e6892edb0e338ae4191e4c1be051b597, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8926227711485878419, guid: e6892edb0e338ae4191e4c1be051b597, type: 3}
+      propertyPath: _hitMask.m_Bits
+      value: 192
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e6892edb0e338ae4191e4c1be051b597, type: 3}
+--- !u!4 &6124305367823584794 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8668812486406315194, guid: e6892edb0e338ae4191e4c1be051b597, type: 3}
+  m_PrefabInstance: {fileID: 3220118050478789280}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4025634633163617485
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,6 +1,10 @@
 using System.Collections;
+using System.EnterpriseServices;
+using System.Windows.Forms;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 public class EnemyController : MovementState
 {
@@ -13,19 +17,17 @@ public class EnemyController : MovementState
     public PatrolPoint[] PatrolPoints { get { return _patrolPoints; } set { _patrolPoints = value; } }
     private int _pathIndex = 0;
 
+    // private
     private CharacterMovement _charcterMovement;
     private IEnumerator _monsterCurrentState;
 
     // Events
     public UnityEvent OnKilled;
 
-    private void Awake()
-    {
-        _charcterMovement = GetComponent<CharacterMovement>();
-    }
-
     private void Start()
     {
+        _charcterMovement = GetComponent<CharacterMovement>();
+
         // start in patrol state
         ChangeState(PatrolState(), _monsterCurrentState);
     }
@@ -39,17 +41,6 @@ public class EnemyController : MovementState
         base.ChangeState(newState, currentState);
 
     }
-
-    // stop execution of current state
-    public void StopState()
-    {
-        if (_monsterCurrentState != null)
-        {
-            StopCoroutine(_monsterCurrentState);
-        }
-        _charcterMovement.Stop();
-    }
-
     // patrol the points by the order
     private IEnumerator PatrolState()
     {
@@ -58,6 +49,9 @@ public class EnemyController : MovementState
 
         while(true)
         {
+            TryFindTarget();
+            if (IsTargetValid) AttackBuilding();
+
             // find new patrol point if existing reached
             float patrolDistance = Vector3.Distance(transform.position, _patrolPoints[_pathIndex].transform.position);
             if (patrolDistance < _patrolPointReachedDistance && _pathIndex != _patrolPoints.Length) _pathIndex ++;
@@ -75,6 +69,22 @@ public class EnemyController : MovementState
             // wait for next frame
             yield return null;
         }
+    }
 
+    // stop execution of current state
+    public void StopState()
+    {
+        if (_monsterCurrentState != null) StopCoroutine(_monsterCurrentState);
+
+        _charcterMovement.Stop();
+    }
+
+    private void AttackBuilding()
+    {
+        if (TargetDistance < _attackDistance && IsTargetVisible)
+        {
+            // shoot monsters
+            _shooter.TryFire(_target.AimPosition.position, _myTargetable.Team, gameObject);
+        }
     }
 }
