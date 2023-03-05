@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class BuildingController : MovementState
 {
+    [SerializeField] private GameObject _TowerPlacementSpot;
     private IEnumerator _buildingCurrentState;
 
     private void Start()
@@ -50,5 +51,11 @@ public class BuildingController : MovementState
 
         // fall back to idle if target is invalid
         ChangeState(IdleState(), _buildingCurrentState);
+    }
+
+    public void Destroy()
+    {
+        Instantiate(_TowerPlacementSpot, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 }
