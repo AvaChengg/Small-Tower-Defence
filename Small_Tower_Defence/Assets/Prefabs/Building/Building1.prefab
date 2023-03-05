@@ -173,8 +173,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3966c78135ef47d439f976064b33d265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _current: 100
-  _max: 100
+  _current: 100000
+  _max: 100000
   OnDamaged:
     m_PersistentCalls:
       m_Calls: []
