@@ -1192,6 +1192,10 @@ PrefabInstance:
       value: Player/New action
       objectReference: {fileID: 0}
     - target: {fileID: 3204186711335815738, guid: 9ba17c22eb2c89749b5d8cf40d78775c, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204186711335815738, guid: 9ba17c22eb2c89749b5d8cf40d78775c, type: 3}
       propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
