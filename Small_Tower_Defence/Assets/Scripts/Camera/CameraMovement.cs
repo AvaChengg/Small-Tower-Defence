@@ -9,7 +9,7 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private float _moveSpeed = 4.0f;
     [SerializeField] private float _panBorderThickness = 10.0f;
 
-    [SerializeField] private CameraController _cameraController;
+    private CameraController _cameraController;
 
     private void Start()
     {
