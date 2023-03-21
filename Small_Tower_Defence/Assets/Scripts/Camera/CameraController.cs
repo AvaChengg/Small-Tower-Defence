@@ -5,9 +5,6 @@ using UnityEngine.InputSystem;
 public class CameraController : MonoBehaviour
 {
     [Header("Camera Setting")]
-    [SerializeField] private float _lookOffset = 1.0f;
-    [SerializeField] private float _cameraAngle = 45.0f;
-    [SerializeField] private float _defaultZoom = 5.0f;
     [SerializeField] private LayerMask _groundMask;
 
     private Vector3 _cameraPosition;
@@ -29,14 +26,7 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         _levelCamera = GetComponentInChildren<CinemachineVirtualCamera>();
-
-        // set the rotation of the camera based on the CameraAngle property
-        _levelCamera.transform.rotation = Quaternion.AngleAxis(_cameraAngle, Vector3.right);
-
-        // set the position of the camera based on the look offset, angle and default zoom properties
-        _cameraPosition = (Vector3.up * _lookOffset) + (Quaternion.AngleAxis(_cameraAngle, Vector3.right) * Vector3.back) * _defaultZoom;
-
-        _levelCamera.transform.position = _cameraPosition;
+        _cameraPosition = _levelCamera.transform.position;
     }
 
     // return to original position
