@@ -10,7 +10,7 @@ public class KillZone : MonoBehaviour
 
     private void Start()
     {
-        OnUpdateObjective.Invoke("Money: " + _score);
+        OnUpdateObjective.Invoke("" + _score);
     }
 
     private void OnTriggerStay(Collider other)
@@ -25,9 +25,9 @@ public class KillZone : MonoBehaviour
             _wavesEncounter.RemoveEnemy(enemy);
 
             // add money to the player
-            int reward = _wavesEncounter.Reward;
+            int reward = _wavesEncounter.Coin;
             _score += reward;
-            OnUpdateObjective.Invoke("Money: " + _score);
+            OnUpdateObjective.Invoke("" + _score);
         }
     }
 }

@@ -8,7 +8,7 @@ public class WavesEncounter : Encounter
     [Header("Spawning Setting")]
     [SerializeField] private float _spawnInterval = 0.5f;     // spawn monster interval
     [SerializeField] private int _quantity = 10;              // spawn monster quantity
-    public int Reward = 10;                                   // Reward money
+    public int Coin = 10;                                   // Reward money
 
     public override void StartEncounter()
     {

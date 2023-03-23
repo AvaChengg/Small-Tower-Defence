@@ -13,7 +13,7 @@ public class TriggerVolume : MonoBehaviour
 
     private void Start()
     {
-        OnUpdateLives.Invoke("Lives: " + _lives);
+        OnUpdateLives.Invoke("" + _lives);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -30,7 +30,7 @@ public class TriggerVolume : MonoBehaviour
         OnEnter.Invoke(other.gameObject);
 
         // update the lives to UI
-        OnUpdateLives.Invoke("Lives: " + _lives);
+        OnUpdateLives.Invoke("" + _lives);
     }
 
     private void CheckLives()
