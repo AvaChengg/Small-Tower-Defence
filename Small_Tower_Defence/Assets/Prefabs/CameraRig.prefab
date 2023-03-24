@@ -212,7 +212,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _defaultColor: {r: 1, g: 0.4885, b: 0, a: 0.50980395}
   _highlightColor: {r: 0.1910665, g: 1, b: 0, a: 0.50980395}
+  _killZone: {fileID: 0}
   _buildings:
   - {fileID: 2913083963856111815, guid: 651bc9bf990c42b408cb588360bda008, type: 3}
   - {fileID: 919132149155446097, guid: 3de06b60cd3b89847a698b8d35fb1af5, type: 3}
   IsSpot: 0
+  OnWarningMoney:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: ce0051e6ea6b9d44da46268297293c6a, type: 2}
+        m_TargetAssemblyTypeName: GameEvent`1[[System.String, mscorlib
+        m_MethodName: Invoke
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

@@ -1,16 +1,19 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class KillZone : MonoBehaviour
+public class KillZone : MonoBehaviour, IInteractable
 {
     [SerializeField] private WavesEncounter _wavesEncounter;
-    private int _score = 0;
+
+    [SerializeField] private int _defaultCoin = 20;
 
     public UnityEvent<string> OnUpdateObjective;
 
+    public int Money { get => _defaultCoin; set => _defaultCoin = value; }
+
     private void Start()
     {
-        OnUpdateObjective.Invoke("" + _score);
+        OnUpdateObjective.Invoke("" + _defaultCoin);
     }
 
     private void OnTriggerStay(Collider other)
@@ -26,8 +29,8 @@ public class KillZone : MonoBehaviour
 
             // add money to the player
             int reward = _wavesEncounter.Coin;
-            _score += reward;
-            OnUpdateObjective.Invoke("" + _score);
+            _defaultCoin += reward;
+            OnUpdateObjective.Invoke("" + _defaultCoin);
         }
     }
 }

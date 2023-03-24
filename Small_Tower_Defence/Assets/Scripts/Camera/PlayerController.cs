@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
@@ -11,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Color _highlightColor;
 
     [Header("Buildings")]
+    [SerializeField] private KillZone _killZone;
     [SerializeField] private GameObject[] _buildings;
 
     private int _buildingNum;
@@ -25,6 +27,8 @@ public class PlayerController : MonoBehaviour
     public int BuildingNum { get => _buildingNum; set => _buildingNum = value; }
 
     [HideInInspector] public bool IsSpot;
+
+    public UnityEvent<string> OnWarningMoney;
 
     private void Start()
     {
@@ -65,8 +69,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void SelectBuliding()
+    public void SelectBuliding(int money)
     {
+        if(_killZone.Money < money)
+        {
+            OnWarningMoney.Invoke("You need more money");
+            StartCoroutine(ClearText());
+            return;
+        }
         _isSelect = true;
     }
 
@@ -78,6 +88,7 @@ public class PlayerController : MonoBehaviour
         {
             case 0:
                 Instantiate(_buildings[0], _hit.transform.position, _hit.transform.rotation);
+
                 break;
             case 1:
                 Instantiate(_buildings[1], _hit.transform.position, _hit.transform.rotation);
@@ -86,5 +97,11 @@ public class PlayerController : MonoBehaviour
         Destroy(_placementSpot);
         IsSpot = false;
         _isSelect = false;
+    }
+
+    private IEnumerator ClearText()
+    {
+        yield return new WaitForSeconds(1);
+        OnWarningMoney.Invoke("");
     }
 }
