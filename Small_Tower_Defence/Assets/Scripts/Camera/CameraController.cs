@@ -1,5 +1,6 @@
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
@@ -12,10 +13,15 @@ public class CameraController : MonoBehaviour
     private CameraMovement _cameraMovement;
     private CinemachineVirtualCamera _levelCamera;
 
+    private bool _isBuilding;
+    private TradingController _tradingController;
+
     [HideInInspector] public bool CanMove;
     [HideInInspector] public LayerMask GroundMask => _groundMask;
     [HideInInspector] public Vector3 MoveTarget;
     [HideInInspector] public Vector3 MousePos;
+
+    public UnityEvent OnSelectedBuilding;
 
     private void Awake()
     {
@@ -44,8 +50,8 @@ public class CameraController : MonoBehaviour
     // place the building
     public void OnPlace(InputAction.CallbackContext context)
     {
-        if(!_playerController.IsSpot) return;
-        _playerController.PlaceBuliding();
+        if(_playerController.IsSpot) _playerController.PlaceBuliding();
+        if (_isBuilding) OnSelectedBuilding.Invoke();
     }
 
     private void Update()
@@ -54,5 +60,19 @@ public class CameraController : MonoBehaviour
 
         // send move input to CameraMovement component
         _cameraMovement.SetMouseMoveInput();
+
+        // find mouse ray
+        Vector3 mousePos = Mouse.current.position.ReadValue();
+        Ray mouseRay = Camera.main.ScreenPointToRay(mousePos);
+
+        if (Physics.Raycast(mouseRay, out RaycastHit hit, Mathf.Infinity) && 
+            hit.transform.TryGetComponent(out _tradingController))
+        {
+            _isBuilding = true;
+        }
+        else
+        {
+            _isBuilding = false;
+        }
     }
 }
