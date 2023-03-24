@@ -169,6 +169,45 @@ MonoBehaviour:
   CanMove: 0
   MoveTarget: {x: 0, y: 0, z: 0}
   MousePos: {x: 0, y: 0, z: 0}
+  OnSelectedBuilding:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 5ebb716326c390e4ab7a111933379f57, type: 2}
+        m_TargetAssemblyTypeName: GameEvent`1[[UnityEngine.Transform, UnityEngine
+        m_MethodName: Invoke
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1160290579615310728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,9 +249,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fb0bb728e7dd9b49a2b61bf6566b42b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _killZone: {fileID: 0}
   _defaultColor: {r: 1, g: 0.4885, b: 0, a: 0.50980395}
   _highlightColor: {r: 0.1910665, g: 1, b: 0, a: 0.50980395}
-  _killZone: {fileID: 0}
   _buildings:
   - {fileID: 2913083963856111815, guid: 651bc9bf990c42b408cb588360bda008, type: 3}
   - {fileID: 919132149155446097, guid: 3de06b60cd3b89847a698b8d35fb1af5, type: 3}

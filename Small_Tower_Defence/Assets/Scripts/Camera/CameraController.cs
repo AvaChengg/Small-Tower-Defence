@@ -14,14 +14,15 @@ public class CameraController : MonoBehaviour
     private CinemachineVirtualCamera _levelCamera;
 
     private bool _isBuilding;
-    private TradingController _tradingController;
+    private BuildingController _buildingController;
 
     [HideInInspector] public bool CanMove;
     [HideInInspector] public LayerMask GroundMask => _groundMask;
     [HideInInspector] public Vector3 MoveTarget;
     [HideInInspector] public Vector3 MousePos;
 
-    public UnityEvent OnSelectedBuilding;
+    public UnityEvent<Transform> OnSelectedBuilding;
+    //public UnityEvent<Transform> On
 
     private void Awake()
     {
@@ -51,7 +52,7 @@ public class CameraController : MonoBehaviour
     public void OnPlace(InputAction.CallbackContext context)
     {
         if(_playerController.IsSpot) _playerController.PlaceBuliding();
-        if (_isBuilding) OnSelectedBuilding.Invoke();
+        if (_isBuilding) OnSelectedBuilding.Invoke(_buildingController.transform);
     }
 
     private void Update()
@@ -66,7 +67,7 @@ public class CameraController : MonoBehaviour
         Ray mouseRay = Camera.main.ScreenPointToRay(mousePos);
 
         if (Physics.Raycast(mouseRay, out RaycastHit hit, Mathf.Infinity) && 
-            hit.transform.TryGetComponent(out _tradingController))
+            hit.transform.TryGetComponent(out _buildingController))
         {
             _isBuilding = true;
         }

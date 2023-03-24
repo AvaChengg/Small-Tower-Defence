@@ -974,18 +974,6 @@ PrefabInstance:
       value: CameraRig
       objectReference: {fileID: 0}
     - target: {fileID: 1160290579615310731, guid: edad75c166fffb14882427d4d4689ab4, type: 3}
-      propertyPath: OnSelectedBuilding.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1160290579615310731, guid: edad75c166fffb14882427d4d4689ab4, type: 3}
-      propertyPath: OnSelectedBuilding.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1160290579615310731, guid: edad75c166fffb14882427d4d4689ab4, type: 3}
-      propertyPath: OnSelectedBuilding.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1160290579615310731, guid: edad75c166fffb14882427d4d4689ab4, type: 3}
       propertyPath: OnSelectedBuilding.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 922732317}
@@ -993,42 +981,6 @@ PrefabInstance:
       propertyPath: OnSelectedBuilding.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 2511273372745218178}
-    - target: {fileID: 1160290579615310731, guid: edad75c166fffb14882427d4d4689ab4, type: 3}
-      propertyPath: OnSelectedBuilding.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1160290579615310731, guid: edad75c166fffb14882427d4d4689ab4, type: 3}
-      propertyPath: OnSelectedBuilding.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1160290579615310731, guid: edad75c166fffb14882427d4d4689ab4, type: 3}
-      propertyPath: OnSelectedBuilding.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 1160290579615310731, guid: edad75c166fffb14882427d4d4689ab4, type: 3}
-      propertyPath: OnSelectedBuilding.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 1160290579615310731, guid: edad75c166fffb14882427d4d4689ab4, type: 3}
-      propertyPath: OnSelectedBuilding.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 1160290579615310731, guid: edad75c166fffb14882427d4d4689ab4, type: 3}
-      propertyPath: OnSelectedBuilding.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 1160290579615310731, guid: edad75c166fffb14882427d4d4689ab4, type: 3}
-      propertyPath: OnSelectedBuilding.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1160290579615310731, guid: edad75c166fffb14882427d4d4689ab4, type: 3}
-      propertyPath: OnSelectedBuilding.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 1160290579615310731, guid: edad75c166fffb14882427d4d4689ab4, type: 3}
-      propertyPath: OnSelectedBuilding.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 1160290579615310735, guid: edad75c166fffb14882427d4d4689ab4, type: 3}
       propertyPath: _killZone
       value: 
@@ -1042,6 +994,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1401745093472773577, guid: 06bdb37fa3909dc48b319f15bd4d84d0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2511273372685300901, guid: 06bdb37fa3909dc48b319f15bd4d84d0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 3
@@ -1171,6 +1127,14 @@ PrefabInstance:
       value: WavesEncounter, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4012070665803365532, guid: 06bdb37fa3909dc48b319f15bd4d84d0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4052311439267447031, guid: 06bdb37fa3909dc48b319f15bd4d84d0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5350830170182728656, guid: 06bdb37fa3909dc48b319f15bd4d84d0, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
