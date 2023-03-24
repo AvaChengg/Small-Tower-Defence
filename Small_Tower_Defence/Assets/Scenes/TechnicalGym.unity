@@ -974,6 +974,10 @@ PrefabInstance:
       value: CameraRig
       objectReference: {fileID: 0}
     - target: {fileID: 1160290579615310731, guid: edad75c166fffb14882427d4d4689ab4, type: 3}
+      propertyPath: _killZone
+      value: 
+      objectReference: {fileID: 3566331518501206819}
+    - target: {fileID: 1160290579615310731, guid: edad75c166fffb14882427d4d4689ab4, type: 3}
       propertyPath: OnSelectedBuilding.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 922732317}

@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
+    [SerializeField] private KillZone _killZone;
     [Header("Camera Setting")]
     [SerializeField] private LayerMask _groundMask;
 
@@ -21,6 +22,7 @@ public class CameraController : MonoBehaviour
     [HideInInspector] public Vector3 MoveTarget;
     [HideInInspector] public Vector3 MousePos;
 
+    public UnityEvent<int> OnCoinUpdated;
     public UnityEvent<Transform> OnSelectedBuilding;
     //public UnityEvent<Transform> On
 
@@ -51,8 +53,17 @@ public class CameraController : MonoBehaviour
     // place the building
     public void OnPlace(InputAction.CallbackContext context)
     {
-        if(_playerController.IsSpot) _playerController.PlaceBuliding();
-        if (_isBuilding) OnSelectedBuilding.Invoke(_buildingController.transform);
+        if (_playerController.IsSpot)
+        {
+            OnCoinUpdated.Invoke(_killZone.DefaultMoney);
+            _playerController.PlaceBuliding();
+        }
+
+        if (_isBuilding)
+        {
+            OnSelectedBuilding.Invoke(_buildingController.transform);
+            OnCoinUpdated.Invoke(_killZone.DefaultMoney);
+        }
     }
 
     private void Update()

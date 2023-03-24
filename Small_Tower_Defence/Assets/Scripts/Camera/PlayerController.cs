@@ -105,6 +105,11 @@ public class PlayerController : MonoBehaviour
         _isSelect = false;
     }
 
+    public void GetCurrentCoin(int coin)
+    {
+        _killZone.DefaultMoney = coin;
+    }
+
     private IEnumerator ClearText()
     {
         yield return new WaitForSeconds(1);
