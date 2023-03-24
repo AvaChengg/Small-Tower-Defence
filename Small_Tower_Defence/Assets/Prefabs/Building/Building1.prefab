@@ -46,6 +46,8 @@ GameObject:
   - component: {fileID: 2642543980107732483}
   - component: {fileID: 2642543980107732487}
   - component: {fileID: 1972619139628168219}
+  - component: {fileID: 8707207193148313000}
+  - component: {fileID: 7305552685068210300}
   m_Layer: 6
   m_Name: Building1
   m_TagString: Untagged
@@ -242,6 +244,46 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8707207193148313000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2913083963856111815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 368714e1515bc8548a2870f52aeab43e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEvent: {fileID: 11400000, guid: eba631d0350b4fe4ba83dee7abfbcde7, type: 2}
+  OnInvoke:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7305552685068210300}
+        m_TargetAssemblyTypeName: TradingController, Assembly-CSharp
+        m_MethodName: GetCurrentCoin
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7305552685068210300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2913083963856111815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c61ef10a82151445ba6f6bdcfe9c33f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3354080856204985930
 PrefabInstance:
   m_ObjectHideFlags: 0

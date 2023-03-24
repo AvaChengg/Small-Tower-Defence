@@ -1198,13 +1198,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2642543980107732483, guid: 651bc9bf990c42b408cb588360bda008, type: 3}
+      propertyPath: _maxDistance
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 2913083963856111815, guid: 651bc9bf990c42b408cb588360bda008, type: 3}
       propertyPath: m_Name
       value: Building1
       objectReference: {fileID: 0}
     - target: {fileID: 2913083963856111815, guid: 651bc9bf990c42b408cb588360bda008, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6155367409635321561, guid: 651bc9bf990c42b408cb588360bda008, type: 3}
       propertyPath: _damage
@@ -1415,6 +1419,10 @@ PrefabInstance:
     - target: {fileID: 3566331518349846301, guid: d44bbf05205c93d4ab46980b2574b5e9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3566331518349846302, guid: d44bbf05205c93d4ab46980b2574b5e9, type: 3}
+      propertyPath: m_Size.y
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3566331518349846370, guid: d44bbf05205c93d4ab46980b2574b5e9, type: 3}
       propertyPath: Money

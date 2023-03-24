@@ -7,6 +7,7 @@ using UnityEngine;
 public class BuildingController : MovementState
 {
     [SerializeField] private GameObject _TowerPlacementSpot;
+
     private IEnumerator _buildingCurrentState;
 
     private void Start()

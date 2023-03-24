@@ -10,7 +10,7 @@ public class KillZone : MonoBehaviour
     public int DefaultMoney = 20;
 
     public UnityEvent<string> OnUpdateObjective;
-
+    public UnityEvent<int> OnCoinUpdated;
     private void Start()
     {
         OnUpdateObjective.Invoke("" + DefaultMoney);
@@ -30,6 +30,7 @@ public class KillZone : MonoBehaviour
             // add money to the player
             int reward = _wavesEncounter.Coin;
             DefaultMoney += reward;
+            OnCoinUpdated.Invoke(DefaultMoney);
             OnUpdateObjective.Invoke("" + DefaultMoney);
         }
     }
