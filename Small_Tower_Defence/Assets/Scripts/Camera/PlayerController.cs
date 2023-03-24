@@ -7,13 +7,17 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Reference")]
+    [SerializeField] private KillZone _killZone;
+
     [Header("Placement Spots Setting")]
     [SerializeField] private Color _defaultColor;
     [SerializeField] private Color _highlightColor;
 
     [Header("Buildings")]
-    [SerializeField] private KillZone _killZone;
     [SerializeField] private GameObject[] _buildings;
+    [SerializeField] private int _buildingOnePrice = 20;
+
 
     private int _buildingNum;
     private bool _isSelect;
@@ -29,6 +33,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public bool IsSpot;
 
     public UnityEvent<string> OnWarningMoney;
+    public UnityEvent<string> OnUpdateObjective;
 
     private void Start()
     {
@@ -71,7 +76,7 @@ public class PlayerController : MonoBehaviour
 
     public void SelectBuliding(int money)
     {
-        if(_killZone.Money < money)
+        if(_killZone.DefaultMoney < money)
         {
             OnWarningMoney.Invoke("You need more money");
             StartCoroutine(ClearText());
@@ -87,8 +92,9 @@ public class PlayerController : MonoBehaviour
         switch (_buildingNum)
         {
             case 0:
+                _killZone.DefaultMoney -= _buildingOnePrice;
+                OnUpdateObjective.Invoke("" + _killZone.DefaultMoney);
                 Instantiate(_buildings[0], _hit.transform.position, _hit.transform.rotation);
-
                 break;
             case 1:
                 Instantiate(_buildings[1], _hit.transform.position, _hit.transform.rotation);

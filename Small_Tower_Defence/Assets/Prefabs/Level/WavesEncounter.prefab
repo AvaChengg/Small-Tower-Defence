@@ -133,8 +133,21 @@ MonoBehaviour:
   OnEncounterFinished:
     m_PersistentCalls:
       m_Calls: []
-  OnUpdateObjected:
+  OnUpdateWave:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: d03993f38b8d6164498ad0c1bb176ce6, type: 2}
+        m_TargetAssemblyTypeName: GameEvent`1[[System.String, mscorlib
+        m_MethodName: Invoke
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _spawnInterval: 0.5
-  quantity: 10
+  _quantity: 10
+  Coin: 10

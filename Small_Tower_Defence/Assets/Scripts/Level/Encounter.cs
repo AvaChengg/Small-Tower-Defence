@@ -11,20 +11,27 @@ public class Encounter : MonoBehaviour
     [SerializeField] private Transform _patrolPoint;
     [SerializeField] protected EnemyController[] _monsters;                         // spawn the monsters prefab
 
+    protected int _levelCounter = 0;                                                  // count levels
     protected bool _isWin;
-    private int _levelCounter = 0;                                                  // count levels
     private PatrolPoint[] _patrolPointsList;
 
     [HideInInspector] public List<EnemyController> CurrentEnemies = new List<EnemyController>();      // store enemies that spawned
 
     public UnityEvent OnEncounterStarted;
     public UnityEvent OnEncounterFinished;
-    public UnityEvent OnUpdateObjected;
+    public UnityEvent<string> OnUpdateWave;
+
+    private void Start()
+    {
+        OnUpdateWave.Invoke("Wave: " + _levelCounter);
+    }
 
     // encounter starts here
     public virtual void StartEncounter()
     {
         OnEncounterStarted?.Invoke();
+        int waveNum = _levelCounter + 1;
+        OnUpdateWave.Invoke("Wave: " + waveNum);
     }
 
     protected void SpawnEnemy(EnemyController[] prefabs)
