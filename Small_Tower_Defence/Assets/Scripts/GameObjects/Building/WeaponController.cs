@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
+    [Header("Attacking Setting")]
     [SerializeField] protected float _damage = 5.0f;
     [SerializeField] protected float _range = 20.0f;
     [SerializeField] protected float _roundsPerMinute = 300.0f;   // the fire period

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Shooter : WeaponController
 {
@@ -25,7 +26,7 @@ public class Shooter : WeaponController
         if(Physics.Raycast(start, aimDirection, out RaycastHit hit, _range, _hitMask))
         {
             // if inside this check, something was hit
-
+            
             // try and get target, check team (for enemy), then try to damage health
             if (hit.collider.TryGetComponent(out Targetable target) &&
                 target.Team != myTeam &&

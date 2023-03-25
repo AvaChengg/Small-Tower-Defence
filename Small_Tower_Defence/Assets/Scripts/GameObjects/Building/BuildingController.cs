@@ -3,10 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ServiceModel.Configuration;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class BuildingController : MovementState
 {
     private IEnumerator _buildingCurrentState;
+
+    [Header("VFX")]
+    [SerializeField] private VisualEffect _arrows;
 
     private void Start()
     {
@@ -42,6 +46,10 @@ public class BuildingController : MovementState
             {
                 // shoot monsters
                 _shooter.TryFire(_target.AimPosition.position, _myTargetable.Team, gameObject);
+
+                // set VFX
+                _arrows.transform.LookAt(_target.AimPosition);
+                _arrows.Play();
             }
 
             // wait for next frame
