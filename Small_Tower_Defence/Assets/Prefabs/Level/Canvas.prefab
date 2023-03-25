@@ -1708,8 +1708,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c61ef10a82151445ba6f6bdcfe9c33f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _price: 5
+  _cameraRig: {fileID: 0}
   _towerPlacementSpot: {fileID: 7173443187248612720, guid: 548e563a41690fe4b8624adef80b93de, type: 3}
+  _upgradBuilding: {fileID: 7234182164657858838, guid: c3807eef02459824d9e5d2ad2f1bb19b, type: 3}
+  _upgradePrice: 50
+  OnUpgrade:
+    m_PersistentCalls:
+      m_Calls: []
   OnCoinUpdated:
     m_PersistentCalls:
       m_Calls:
@@ -1740,6 +1745,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnWarningMoney:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: ce0051e6ea6b9d44da46268297293c6a, type: 2}
+        m_TargetAssemblyTypeName: GameEvent`1[[System.String, mscorlib
+        m_MethodName: Invoke
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8214160770341302296
 GameObject:
   m_ObjectHideFlags: 0
@@ -1752,8 +1772,12 @@ GameObject:
   - component: {fileID: 3877390690496565339}
   - component: {fileID: 8613983310201994320}
   - component: {fileID: 5055680080736879657}
+  - component: {fileID: 6045797018662708102}
+  - component: {fileID: 5421949643013652822}
+  - component: {fileID: 3335207052744349635}
+  - component: {fileID: 2312897681369197529}
   m_Layer: 5
-  m_Name: Building Level 02
+  m_Name: Upgrade Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1861,10 +1885,38 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: SelectBuliding
+      - m_Target: {fileID: 3335207052744349635}
+        m_TargetAssemblyTypeName: TradingController, Assembly-CSharp
+        m_MethodName: Upgrade
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &6045797018662708102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8214160770341302296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd9f4124c0bfc7d4e952be3d05259963, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEvent: {fileID: 11400000, guid: 5ebb716326c390e4ab7a111933379f57, type: 2}
+  OnInvoke:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3335207052744349635}
+        m_TargetAssemblyTypeName: TradingController, Assembly-CSharp
+        m_MethodName: GetCurrentTransform
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1873,10 +1925,154 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: set_BuildingNum
-        m_Mode: 3
+--- !u!114 &5421949643013652822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8214160770341302296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 368714e1515bc8548a2870f52aeab43e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEvent: {fileID: 11400000, guid: eba631d0350b4fe4ba83dee7abfbcde7, type: 2}
+  OnInvoke:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3335207052744349635}
+        m_TargetAssemblyTypeName: TradingController, Assembly-CSharp
+        m_MethodName: GetCurrentCoin
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3335207052744349635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8214160770341302296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c61ef10a82151445ba6f6bdcfe9c33f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraRig: {fileID: 0}
+  _towerPlacementSpot: {fileID: 7173443187248612720, guid: 548e563a41690fe4b8624adef80b93de, type: 3}
+  _upgradBuilding: {fileID: 887477045258467800, guid: c3807eef02459824d9e5d2ad2f1bb19b, type: 3}
+  _upgradePrice: 50
+  OnUpgrade:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8214160770341302296}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8483062006292992670}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 7664548817173655192}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnCoinUpdated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: eba631d0350b4fe4ba83dee7abfbcde7, type: 2}
+        m_TargetAssemblyTypeName: GameEvent`1[[System.Int32, mscorlib
+        m_MethodName: Invoke
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnUpdateObjective:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 9c4aa1580f13a60449a5550d0da4519e, type: 2}
+        m_TargetAssemblyTypeName: GameEvent`1[[System.String, mscorlib
+        m_MethodName: Invoke
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnWarningMoney:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: ce0051e6ea6b9d44da46268297293c6a, type: 2}
+        m_TargetAssemblyTypeName: GameEvent`1[[System.String, mscorlib
+        m_MethodName: Invoke
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2312897681369197529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8214160770341302296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7095ad1e7da873142a41fabe545a5671, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEvent: {fileID: 11400000, guid: ce0051e6ea6b9d44da46268297293c6a, type: 2}
+  OnInvoke:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8319102953602445714}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

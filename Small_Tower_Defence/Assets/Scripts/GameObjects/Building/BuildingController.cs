@@ -9,8 +9,13 @@ public class BuildingController : MovementState
 {
     private IEnumerator _buildingCurrentState;
 
+    [Header("Reference")]
+    [SerializeField] private GameObject _towerPlacementSpot;
+
     [Header("VFX")]
     [SerializeField] private VisualEffect _arrows;
+
+    public bool IsUpgraded;
 
     private void Start()
     {
@@ -58,5 +63,11 @@ public class BuildingController : MovementState
 
         // fall back to idle if target is invalid
         ChangeState(IdleState(), _buildingCurrentState);
+    }
+
+    public void Destroy()
+    {
+        Instantiate(_towerPlacementSpot, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 }

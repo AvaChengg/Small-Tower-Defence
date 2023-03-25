@@ -15,8 +15,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Color _highlightColor;
 
     [Header("Buildings")]
+    [SerializeField] private int _buildingPrice = 20;
     [SerializeField] private GameObject[] _buildings;
-    [SerializeField] private int _buildingOnePrice = 20;
 
 
     private int _buildingNum;
@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     private CinemachineVirtualCamera _levelCamera;
 
     public int BuildingNum { get => _buildingNum; set => _buildingNum = value; }
+    public int BuildingPrice { get => _buildingPrice;}
 
     [HideInInspector] public bool IsSpot;
 
@@ -92,7 +93,7 @@ public class PlayerController : MonoBehaviour
         switch (_buildingNum)
         {
             case 0:
-                _killZone.DefaultMoney -= _buildingOnePrice;
+                _killZone.DefaultMoney -= _buildingPrice;
                 OnUpdateObjective.Invoke("" + _killZone.DefaultMoney);
                 Instantiate(_buildings[0], _hit.transform.position, _hit.transform.rotation);
                 break;

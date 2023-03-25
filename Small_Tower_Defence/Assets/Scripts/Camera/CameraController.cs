@@ -2,10 +2,14 @@ using Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class CameraController : MonoBehaviour
 {
+    [Header("Reference")]
     [SerializeField] private KillZone _killZone;
+    [SerializeField] private Transform _upgradeButton;
+
     [Header("Camera Setting")]
     [SerializeField] private LayerMask _groundMask;
 
@@ -24,7 +28,6 @@ public class CameraController : MonoBehaviour
 
     public UnityEvent<int> OnCoinUpdated;
     public UnityEvent<Transform> OnSelectedBuilding;
-    //public UnityEvent<Transform> On
 
     private void Awake()
     {
@@ -63,6 +66,15 @@ public class CameraController : MonoBehaviour
         {
             OnSelectedBuilding.Invoke(_buildingController.transform);
             OnCoinUpdated.Invoke(_killZone.DefaultMoney);
+            
+            if(_buildingController.IsUpgraded)
+            {
+                _upgradeButton.gameObject.SetActive(false);
+            }
+            else
+            {
+                _upgradeButton.gameObject.SetActive(true);
+            }
         }
     }
 
