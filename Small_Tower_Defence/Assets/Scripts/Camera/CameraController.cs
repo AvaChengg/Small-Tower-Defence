@@ -1,9 +1,15 @@
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class CameraController : MonoBehaviour
 {
+    [Header("Reference")]
+    [SerializeField] private KillZone _killZone;
+    [SerializeField] private Transform _upgradeButton;
+
     [Header("Camera Setting")]
     [SerializeField] private LayerMask _groundMask;
 
@@ -12,10 +18,16 @@ public class CameraController : MonoBehaviour
     private CameraMovement _cameraMovement;
     private CinemachineVirtualCamera _levelCamera;
 
+    private bool _isBuilding;
+    private BuildingController _buildingController;
+
     [HideInInspector] public bool CanMove;
     [HideInInspector] public LayerMask GroundMask => _groundMask;
     [HideInInspector] public Vector3 MoveTarget;
     [HideInInspector] public Vector3 MousePos;
+
+    public UnityEvent<int> OnCoinUpdated;
+    public UnityEvent<Transform> OnSelectedBuilding;
 
     private void Awake()
     {
@@ -44,8 +56,26 @@ public class CameraController : MonoBehaviour
     // place the building
     public void OnPlace(InputAction.CallbackContext context)
     {
-        if(!_playerController.IsSpot) return;
-        _playerController.PlaceBuliding();
+        if (_playerController.IsSpot)
+        {
+            OnCoinUpdated.Invoke(_killZone.DefaultMoney);
+            _playerController.PlaceBuliding();
+        }
+
+        if (_isBuilding)
+        {
+            OnSelectedBuilding.Invoke(_buildingController.transform);
+            OnCoinUpdated.Invoke(_killZone.DefaultMoney);
+            
+            if(_buildingController.IsUpgraded)
+            {
+                _upgradeButton.gameObject.SetActive(false);
+            }
+            else
+            {
+                _upgradeButton.gameObject.SetActive(true);
+            }
+        }
     }
 
     private void Update()
@@ -54,5 +84,19 @@ public class CameraController : MonoBehaviour
 
         // send move input to CameraMovement component
         _cameraMovement.SetMouseMoveInput();
+
+        // find mouse ray
+        Vector3 mousePos = Mouse.current.position.ReadValue();
+        Ray mouseRay = Camera.main.ScreenPointToRay(mousePos);
+
+        if (Physics.Raycast(mouseRay, out RaycastHit hit, Mathf.Infinity) && 
+            hit.transform.TryGetComponent(out _buildingController))
+        {
+            _isBuilding = true;
+        }
+        else
+        {
+            _isBuilding = false;
+        }
     }
 }

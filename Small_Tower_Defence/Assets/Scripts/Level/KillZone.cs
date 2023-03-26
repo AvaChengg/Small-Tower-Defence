@@ -3,14 +3,17 @@ using UnityEngine.Events;
 
 public class KillZone : MonoBehaviour
 {
+    [Header("Reference")]
     [SerializeField] private WavesEncounter _wavesEncounter;
-    private int _score = 0;
+
+    [Header("Money Setting")]
+    public int DefaultMoney = 20;
 
     public UnityEvent<string> OnUpdateObjective;
-
+    public UnityEvent<int> OnCoinUpdated;
     private void Start()
     {
-        OnUpdateObjective.Invoke("Money: " + _score);
+        OnUpdateObjective.Invoke("" + DefaultMoney);
     }
 
     private void OnTriggerStay(Collider other)
@@ -25,9 +28,10 @@ public class KillZone : MonoBehaviour
             _wavesEncounter.RemoveEnemy(enemy);
 
             // add money to the player
-            int reward = _wavesEncounter.Reward;
-            _score += reward;
-            OnUpdateObjective.Invoke("Money: " + _score);
+            int reward = _wavesEncounter.Coin;
+            DefaultMoney += reward;
+            OnCoinUpdated.Invoke(DefaultMoney);
+            OnUpdateObjective.Invoke("" + DefaultMoney);
         }
     }
 }

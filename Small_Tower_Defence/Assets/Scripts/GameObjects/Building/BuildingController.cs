@@ -3,11 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ServiceModel.Configuration;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class BuildingController : MovementState
 {
-    [SerializeField] private GameObject _TowerPlacementSpot;
     private IEnumerator _buildingCurrentState;
+
+    [Header("Reference")]
+    [SerializeField] private GameObject _towerPlacementSpot;
+
+    [Header("VFX")]
+    [SerializeField] private VisualEffect _arrows;
+
+    public bool IsUpgraded;
 
     private void Start()
     {
@@ -43,6 +51,10 @@ public class BuildingController : MovementState
             {
                 // shoot monsters
                 _shooter.TryFire(_target.AimPosition.position, _myTargetable.Team, gameObject);
+
+                // set VFX
+                _arrows.transform.LookAt(_target.AimPosition);
+                _arrows.Play();
             }
 
             // wait for next frame
@@ -55,7 +67,7 @@ public class BuildingController : MovementState
 
     public void Destroy()
     {
-        Instantiate(_TowerPlacementSpot, transform.position, transform.rotation);
+        Instantiate(_towerPlacementSpot, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 }

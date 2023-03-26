@@ -2,16 +2,22 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Reference")]
+    [SerializeField] private KillZone _killZone;
+
     [Header("Placement Spots Setting")]
     [SerializeField] private Color _defaultColor;
     [SerializeField] private Color _highlightColor;
 
     [Header("Buildings")]
+    [SerializeField] private int _buildingPrice = 20;
     [SerializeField] private GameObject[] _buildings;
+
 
     private int _buildingNum;
     private bool _isSelect;
@@ -23,8 +29,12 @@ public class PlayerController : MonoBehaviour
     private CinemachineVirtualCamera _levelCamera;
 
     public int BuildingNum { get => _buildingNum; set => _buildingNum = value; }
+    public int BuildingPrice { get => _buildingPrice;}
 
     [HideInInspector] public bool IsSpot;
+
+    public UnityEvent<string> OnWarningMoney;
+    public UnityEvent<string> OnUpdateObjective;
 
     private void Start()
     {
@@ -65,8 +75,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void SelectBuliding()
+    public void SelectBuliding(int money)
     {
+        if(_killZone.DefaultMoney < money)
+        {
+            OnWarningMoney.Invoke("You need more money");
+            StartCoroutine(ClearText());
+            return;
+        }
         _isSelect = true;
     }
 
@@ -77,6 +93,8 @@ public class PlayerController : MonoBehaviour
         switch (_buildingNum)
         {
             case 0:
+                _killZone.DefaultMoney -= _buildingPrice;
+                OnUpdateObjective.Invoke("" + _killZone.DefaultMoney);
                 Instantiate(_buildings[0], _hit.transform.position, _hit.transform.rotation);
                 break;
             case 1:
@@ -86,5 +104,16 @@ public class PlayerController : MonoBehaviour
         Destroy(_placementSpot);
         IsSpot = false;
         _isSelect = false;
+    }
+
+    public void GetCurrentCoin(int coin)
+    {
+        _killZone.DefaultMoney = coin;
+    }
+
+    private IEnumerator ClearText()
+    {
+        yield return new WaitForSeconds(1);
+        OnWarningMoney.Invoke("");
     }
 }
