@@ -22,6 +22,7 @@ public class EnemyController : MovementState
     private CharacterMovement _charcterMovement;
     private IEnumerator _monsterCurrentState;
     private Animator _animator;
+    private CharacterAudio _characterAudio;
 
     // Events
     public UnityEvent OnKilled;
@@ -30,6 +31,7 @@ public class EnemyController : MovementState
     {
         _charcterMovement = GetComponent<CharacterMovement>();
         _animator = GetComponent<Animator>();
+        _characterAudio = GetComponent<CharacterAudio>();
 
         // start in patrol state
         ChangeState(PatrolState(), _monsterCurrentState);
@@ -88,6 +90,7 @@ public class EnemyController : MovementState
     {
         if (TargetDistance < _attackDistance && IsTargetVisible)
         {
+            _characterAudio.PlayAttackSFX();
             // shoot monsters
             _shooter.TryFire(_target.AimPosition.position, _myTargetable.Team, gameObject);
         }

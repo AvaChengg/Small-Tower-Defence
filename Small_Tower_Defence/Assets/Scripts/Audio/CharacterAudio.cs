@@ -6,6 +6,7 @@ public class CharacterAudio : MonoBehaviour
 {
     [SerializeField] private AudioSource _footstepOne;
     [SerializeField] private AudioSource _footstepTwo;
+    [SerializeField] private AudioSource _attack;
 
     public void AnimEventFootstepOne()
     {
@@ -14,5 +15,9 @@ public class CharacterAudio : MonoBehaviour
     public void AnimEventFootstepTwo()
     {
         _footstepTwo.Play();
+    }
+    public void PlayAttackSFX()
+    {
+        _attack.Play();
     }
 }
