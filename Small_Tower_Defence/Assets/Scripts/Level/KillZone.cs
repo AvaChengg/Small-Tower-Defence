@@ -8,6 +8,7 @@ public class KillZone : MonoBehaviour
     [Header("Reference")]
     [SerializeField] private WavesEncounter _wavesEncounter;
     [SerializeField] private AudioSource _enemyDeathSFX;
+    [SerializeField] private AudioSource _coinSFX;
 
     [Header("Money Setting")]
     public int DefaultMoney = 20;
@@ -28,6 +29,7 @@ public class KillZone : MonoBehaviour
         if (health.CurrentHealth <= 0)
         {
             _enemyDeathSFX.Play();
+            _coinSFX.Play();
             Destroy(enemy.gameObject);
             _wavesEncounter.RemoveEnemy(enemy);
 
