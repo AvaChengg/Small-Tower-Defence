@@ -6,30 +6,38 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject pauseButton;
 
-    public string MainMenu;
+    //public string MainMenu;
 
-    public GameObject settingsScreen;
-    public GameObject pauseScreen;
+    //public GameObject settingsScreen;
+    //public GameObject pauseScreen;
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene(1);
+    }
 
     public void Pause()
     {
-        pauseMenu.SetActive(true);
         Time.timeScale = 0f;
+        pauseMenu.SetActive(true);
+        pauseButton.SetActive(false);
     }
 
     public void Resume()
     {
-        pauseMenu.SetActive(false);
         Time.timeScale = 1f;
+        pauseMenu.SetActive(false);
+        pauseButton.SetActive(true);
     }
 
     public void ReturnToMenu()
     {
-        SceneManager.LoadScene(MainMenu);
+        SceneManager.LoadScene(0);
     }
 
-    public void OpenSettings()
+    /*public void OpenSettings()
     {
         settingsScreen.SetActive(true);
     }
@@ -42,5 +50,5 @@ public class PauseMenu : MonoBehaviour
     public void ClosePause()
     {
         pauseScreen.SetActive(false);
-    }
+    }*/
 }
