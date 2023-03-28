@@ -3,7 +3,12 @@ guid: bacd80b04d21ee34884fc2dd53924847
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_SlowdownBelt
+    second: {fileID: 2100000, guid: 39fc1ad74f02d154294d3f86f008b2c2, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

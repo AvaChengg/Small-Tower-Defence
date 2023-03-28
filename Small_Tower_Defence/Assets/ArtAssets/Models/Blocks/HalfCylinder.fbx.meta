@@ -3,7 +3,12 @@ guid: 7318c7654f53dcd428cb7c68b5860080
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_HalfCyl
+    second: {fileID: 2100000, guid: 62339ae11f50d0942b45dc5a204a679e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

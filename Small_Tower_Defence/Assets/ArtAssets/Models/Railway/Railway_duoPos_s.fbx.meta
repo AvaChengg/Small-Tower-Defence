@@ -3,7 +3,12 @@ guid: e04016848df193e479f05d9db764aa80
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Railway
+    second: {fileID: 2100000, guid: d2e3041d10b0cfc45917cc0a73450bf0, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
