@@ -162,7 +162,7 @@ MonoBehaviour:
     m_Bits: 128
   _towerPlacementSpot: {fileID: 7173443187248612720, guid: 548e563a41690fe4b8624adef80b93de, type: 3}
   _attackSFX: {fileID: 6929029420797818362}
-  _arrows: {fileID: 3420806920040393032}
+  _particles: {fileID: 3420806920040393032}
   IsUpgraded: 0
 --- !u!114 &2642543980107732487
 MonoBehaviour:

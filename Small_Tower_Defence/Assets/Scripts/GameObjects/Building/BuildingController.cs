@@ -14,9 +14,9 @@ public class BuildingController : MovementState
     [SerializeField] private AudioSource _attackSFX;
 
     [Header("VFX")]
-    [SerializeField] private VisualEffect _arrows;
+    [SerializeField] private VisualEffect _particles;
 
-    public bool IsUpgraded;
+    [HideInInspector] public bool IsUpgraded;
 
     private void Start()
     {
@@ -57,8 +57,8 @@ public class BuildingController : MovementState
                 _shooter.TryFire(_target.AimPosition.position, _myTargetable.Team, gameObject);
 
                 // set VFX
-                _arrows.transform.LookAt(_target.AimPosition);
-                _arrows.Play();
+                _particles.transform.LookAt(_target.AimPosition);
+                _particles.Play();
 
             }
 
