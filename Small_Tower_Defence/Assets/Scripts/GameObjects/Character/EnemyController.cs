@@ -8,6 +8,7 @@ using UnityEngine.UIElements;
 
 public class EnemyController : MovementState
 {
+
     [Header("Patrolling")]
     [SerializeField] private float _patrolPointReachedDistance = 1.0f;
     [SerializeField] private float _patrolSpeed = 0.5f;
@@ -20,6 +21,7 @@ public class EnemyController : MovementState
     // private
     private CharacterMovement _charcterMovement;
     private IEnumerator _monsterCurrentState;
+    private Animator _animator;
 
     // Events
     public UnityEvent OnKilled;
@@ -27,6 +29,7 @@ public class EnemyController : MovementState
     private void Start()
     {
         _charcterMovement = GetComponent<CharacterMovement>();
+        _animator = GetComponent<Animator>();
 
         // start in patrol state
         ChangeState(PatrolState(), _monsterCurrentState);
@@ -46,6 +49,7 @@ public class EnemyController : MovementState
     {
         // slow move speed during patrol
         _charcterMovement.SpeedMultiplier = _patrolSpeed;
+        _animator.SetBool("IsMoving", true);
 
         while(true)
         {
@@ -60,6 +64,7 @@ public class EnemyController : MovementState
             if (_pathIndex == _patrolPoints.Length)
             {
                 StopState();
+                _animator.SetBool("IsMoving", false);
                 yield return false;
             }
 
@@ -75,8 +80,8 @@ public class EnemyController : MovementState
     public void StopState()
     {
         if (_monsterCurrentState != null) StopCoroutine(_monsterCurrentState);
-
         _charcterMovement.Stop();
+        _animator.SetBool("IsMoving", false);
     }
 
     private void AttackBuilding()

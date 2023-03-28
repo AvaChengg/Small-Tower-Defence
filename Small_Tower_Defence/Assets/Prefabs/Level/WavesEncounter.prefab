@@ -124,7 +124,7 @@ MonoBehaviour:
   _terminalPoint: {fileID: 0}
   _patrolPoint: {fileID: 8693488311061967902}
   _monsters:
-  - {fileID: 1398522471950706464, guid: 78d23151a57030f49b97663d9cd0d0ed, type: 3}
+  - {fileID: 1735802961127225312, guid: cf737030095da3b4fb98d098e39c5a5f, type: 3}
   - {fileID: 4428102855066539230, guid: 73fdd649c8a8f064784e556af7f1ead1, type: 3}
   CurrentEnemies: []
   OnEncounterStarted:
