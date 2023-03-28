@@ -10,6 +10,7 @@ public class TradingController : MonoBehaviour
     [SerializeField] private PlayerController _cameraRig;
     [SerializeField] private GameObject _towerPlacementSpot;
     [SerializeField] private BuildingController _upgradBuilding;
+    [SerializeField] private AudioSource _upgradSFX;
 
 
     [Header("Upgrade Setting")]
@@ -54,6 +55,7 @@ public class TradingController : MonoBehaviour
             StartCoroutine(ClearText());
             return;
         }
+        _upgradSFX.Play();
         _currentCoin -= _upgradePrice;
         OnCoinUpdated.Invoke(_currentCoin);
         OnUpdateObjective.Invoke("" + _currentCoin);
