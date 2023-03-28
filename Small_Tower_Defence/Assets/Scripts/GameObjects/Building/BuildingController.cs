@@ -11,6 +11,7 @@ public class BuildingController : MovementState
 
     [Header("Reference")]
     [SerializeField] private GameObject _towerPlacementSpot;
+    [SerializeField] private AudioSource _attackSFX;
 
     [Header("VFX")]
     [SerializeField] private VisualEffect _arrows;
@@ -49,12 +50,16 @@ public class BuildingController : MovementState
             // attack if within range and LoS
             if (TargetDistance < _attackDistance && IsTargetVisible)
             {
+                // set SFX
+                _attackSFX.Play();
+
                 // shoot monsters
                 _shooter.TryFire(_target.AimPosition.position, _myTargetable.Team, gameObject);
 
                 // set VFX
                 _arrows.transform.LookAt(_target.AimPosition);
                 _arrows.Play();
+
             }
 
             // wait for next frame
