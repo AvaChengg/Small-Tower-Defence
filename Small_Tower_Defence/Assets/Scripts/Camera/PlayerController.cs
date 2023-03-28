@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     private GameObject _placementSpot;
     private CameraController _cameraController;
     private CinemachineVirtualCamera _levelCamera;
-    private PlayerAudio _playerAudio;
+    private AudioPlayer _audioPlayer;
 
     public int BuildingNum { get => _buildingNum; set => _buildingNum = value; }
     public int BuildingPrice { get => _buildingPrice;}
@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
     {
         _levelCamera = GetComponentInChildren<CinemachineVirtualCamera>();
         _cameraController = GetComponent<CameraController>();
-        _playerAudio = GetComponent<PlayerAudio>();
+        _audioPlayer = GetComponent<AudioPlayer>();
     }
 
     void Update()
@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_buildings == null) return;
 
-        _playerAudio.PlaceBuildingSFX();
+        _audioPlayer.PlaySFX();
 
         switch (_buildingNum)
         {
