@@ -52,8 +52,9 @@ public class EnemyController : MovementState
         // slow move speed during patrol
         _charcterMovement.SpeedMultiplier = _patrolSpeed;
         _animator.SetBool("IsMoving", true);
+        _animator.SetBool("IsAttacking", false);
 
-        while(true)
+        while (true)
         {
             TryFindTarget();
             if (IsTargetValid) AttackBuilding();
@@ -84,6 +85,8 @@ public class EnemyController : MovementState
         if (_monsterCurrentState != null) StopCoroutine(_monsterCurrentState);
         _charcterMovement.Stop();
         _animator.SetBool("IsMoving", false);
+        _animator.SetBool("IsAttacking", false);
+
     }
 
     private void AttackBuilding()
@@ -91,6 +94,7 @@ public class EnemyController : MovementState
         if (TargetDistance < _attackDistance && IsTargetVisible)
         {
             _characterAudio.PlayAttackSFX();
+            _animator.SetBool("IsAttacking", true);
             // shoot monsters
             _shooter.TryFire(_target.AimPosition.position, _myTargetable.Team, gameObject);
         }
