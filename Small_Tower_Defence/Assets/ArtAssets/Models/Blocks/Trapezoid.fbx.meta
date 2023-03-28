@@ -3,7 +3,12 @@ guid: d0792790e3e26874abdab9218286de0f
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Trapezoid
+    second: {fileID: 2100000, guid: b5eeabee744e7fb498d30555fc022c16, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

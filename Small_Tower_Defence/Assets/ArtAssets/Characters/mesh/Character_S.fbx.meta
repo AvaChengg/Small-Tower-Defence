@@ -3,7 +3,22 @@ guid: 802eff6d1ed4eba4fb6e92e89f1ebc45
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Pyramid
+    second: {fileID: 2100000, guid: 4df640c60cf16f04286feb9029940b67, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Sphere
+    second: {fileID: 2100000, guid: c3438078fda1f8144afae82529d06d3b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Triangle2
+    second: {fileID: 2100000, guid: 70961d0e872fc7748a61703a4d890659, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
