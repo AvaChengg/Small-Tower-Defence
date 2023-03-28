@@ -11,6 +11,10 @@ public class WavesEncounter : Encounter
     [SerializeField] private int _quantity = 10;              // spawn monster quantity
     public int Coin = 10;                                     // Reward money 
 
+    [Header("SFX")]
+    [SerializeField] private AudioSource _spawnSFX;
+
+
     public override void StartEncounter()
     {
         if (_isWin) return;
@@ -24,7 +28,7 @@ public class WavesEncounter : Encounter
         for(int i = 0; i <= _quantity - 1; i++)
         {
             SpawnEnemy(_monsters);
-
+            _spawnSFX.Play();
             yield return new WaitForSeconds(_spawnInterval);
         }
     }
