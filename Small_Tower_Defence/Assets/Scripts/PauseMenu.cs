@@ -8,10 +8,16 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject pauseButton;
 
+    public AudioSource audio;
+
+    public void playButtonClick()
+    {
+        audio.Play();
+    }
+
     //public string MainMenu;
 
-    //public GameObject settingsScreen;
-    //public GameObject pauseScreen;
+    public GameObject settingsScreen;
 
     public void StartGame()
     {
@@ -37,7 +43,7 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    /*public void OpenSettings()
+    public void OpenSettings()
     {
         settingsScreen.SetActive(true);
     }
@@ -46,9 +52,4 @@ public class PauseMenu : MonoBehaviour
     {
         settingsScreen.SetActive(false);
     }
-
-    public void ClosePause()
-    {
-        pauseScreen.SetActive(false);
-    }*/
-}
+ }
